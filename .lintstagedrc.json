@@ -1,0 +1,6 @@
+{
+  "**/*.{js,html,css}": [
+    "npx prettier --write",
+    "npx eslint"
+  ]
+}
