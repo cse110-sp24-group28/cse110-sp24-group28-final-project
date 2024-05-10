@@ -8,7 +8,7 @@
     "format": "npx prettier --write '**/*.{js,html,css}'",
     "format-check": "npx prettier --check '**/*.{js,html,css}'",
     "prepare": "husky",
-    "lint": "npx eslint '**/*.{js,html,css}'"
+    "lint": "npx eslint '**/*.{js}'"
   },
   "author": "",
   "license": "ISC",

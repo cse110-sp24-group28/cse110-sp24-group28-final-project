@@ -10,6 +10,8 @@ const gifs = [
 const audios = ["./assets/verysad.mp3", "./assets/sad.mp3", "./assets/neutral.mp3", "./assets/happy.mp3", "./assets/veryHappy.mp3"];
 // function to set the attribute of each button click to a specific audio and video
 let audio;
+// is called in html code, but for future reference best practice is to attach an onclick through js
+// eslint-disable-next-line no-unused-vars
 function setGif(num) {
   const element = document.getElementById("gif");
   element.setAttribute("src", gifs[num]);
