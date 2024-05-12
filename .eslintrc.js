@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
-    jest: true,
+    jest: true, // This should generally cover Jest globals
   },
   extends: "eslint:recommended",
   overrides: [
@@ -10,9 +10,16 @@ module.exports = {
       env: {
         node: true,
       },
-      files: ["{.eslintrc.{js,cjs},src/tests/*.js}"],
+      files: [
+        ".eslintrc.{js,cjs}", // Adjust as needed
+        "src/tests/*.js",
+        "jest-puppeteer.config.js", // Explicitly including this
+      ],
       parserOptions: {
         sourceType: "script",
+      },
+      globals: {
+        page: "readonly", // Declare page as a global if necessary
       },
     },
   ],
