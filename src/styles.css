@@ -1,94 +1,196 @@
-@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
-/* styles for body, mainly for thanks.html */
 body {
-  text-align: center;
-  font-family: "Indie Flower";
-  background-color: #faf0e6;
-}
-/* style for "share your experience" */
-header h1 {
-  color: #333;
-  font-family: "Indie Flower";
-}
-/* styles for button and submit button */
-button,
-.submit-button {
-  font-family: "Indie Flower";
-  background-color: #faf0e6;
-  border: 2px solid #ddd;
-  border-radius: 20px;
-  padding: 10px 20px;
-  font-size: 18px;
-  margin: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: center;
-  text-decoration: none; /* Remove underline from link */
-  display: inline-block; /* submit link looks like button */
-}
-/* styles for borders of buttons and submit buttons */
-button:hover,
-.submit-button:hover {
-  border-color: #c5ebc6;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  background-color: blanchedalmond;
-}
-/* styles when we put mouse on the button, border color will change */
-button:focus,
-.submit-button:focus {
-  border-color: #9be1a8;
-}
-/* when we clicked the button, the button will enlarge */
-button:active,
-.submit-button:active {
-  transform: scale(1.2);
-}
-/* the image for button styles centered */
-button img {
-  vertical-align: middle;
-}
-/* color for submit button */
-.submit-button {
-  color: #333;
-}
-/* background color for "verysad" button */
-.verySad {
-  background-color: rgb(255, 232, 232);
-}
-/* background color when hovered */
-.verySad:hover {
-  background-color: #f9d4cc;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  margin: 0;
 }
 
-/*background color for "sad" button*/
-.sad {
-  background-color: #ffe5cb;
+.wrapper {
+  max-width: 1100px;
+  margin: 15px auto;
 }
-/*background color when hovered*/
-.sad:hover {
-  background-color: #facaa0;
+
+.container-calendar {
+  background: #ffffff;
+  padding: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
 }
-/*background color for "neutral" button*/
-.netural {
-  background-color: #fffede;
+
+#journal-section {
+  padding: 10px;
+  background: #f5f5f5;
+  margin: 20px 0;
+  border: 1px solid #ccc;
 }
-/* background color when hovered */
-.netural:hover {
-  background-color: #faf8be;
+
+.container-calendar #left h1 {
+  color: rgb(0, 23, 128);
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
 }
-/* background color for "happy" button */
-.happy {
-  background-color: #f9ffde;
+
+#journal-section h3 {
+  color: rgb(0, 23, 128);
+  font-size: 18px;
+  margin: 0;
 }
-/* background color when hovered */
-.happy:hover {
-  background-color: #e7f4af;
+
+#journal-section input[type="date"],
+#journal-section input[type="text"] {
+  margin: 10px 0;
+  padding: 5px;
+  width: 80%;
 }
-/* background color for "veryhappy" button */
-.veryHappy {
-  background-color: #e4ffde;
+
+#journal-section button {
+  background: rgb(0, 23, 128);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
-/* background color when hovered */
-.veryHappy:hover {
-  background-color: #bef5b2;
+
+.journal-marker {
+  position: relative;
+}
+
+.journal-marker::after {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 6px;
+  background-color: rgb(0, 23, 128);
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.journal-tooltip {
+  position: absolute;
+  background-color: rgba(234, 232, 232, 0.763);
+  color: black;
+  padding: 10px;
+  border-radius: 4px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.journal-marker:hover .journal-tooltip {
+  display: block;
+}
+
+#journal-section {
+  padding: 10px;
+  background: #f5f5f5;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+}
+
+#journal-section h3 {
+  color: rgb(0, 23, 128);
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+}
+
+#journalList {
+  list-style: none;
+  padding: 0;
+}
+
+#journalList li {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.delete-journal {
+  background: rgb(0, 23, 128);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+  align-items: right;
+}
+
+.button-container-calendar button {
+  cursor: pointer;
+  color: black;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.table-calendar {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-calendar td,
+.table-calendar th {
+  padding: 5px;
+  border: 1px solid #e2e2e2;
+  text-align: center;
+  vertical-align: top;
+}
+
+.date-picker.selected {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  outline: 1px dashed rgb(0, 23, 128);
+}
+
+.date-picker.selected span {
+  border-bottom: 2px solid currentColor;
+}
+
+.date-picker:hover {
+  background-color: rgb(0, 23, 128);
+  color: white;
+  cursor: pointer;
+}
+
+#monthAndYear {
+  text-align: center;
+  margin-top: 0;
+}
+
+.button-container-calendar {
+  position: relative;
+  margin-bottom: 1em;
+  overflow: hidden;
+  clear: both;
+}
+
+#previous {
+  float: left;
+}
+
+#next {
+  float: right;
+}
+
+.footer-container-calendar {
+  margin-top: 1em;
+  border-top: 1px solid #dadada;
+  padding: 10px 0;
+}
+
+.footer-container-calendar select {
+  cursor: pointer;
+  background: #ffffff;
+  color: #585858;
+  border: 1px solid #bfc5c5;
+  border-radius: 3px;
+  padding: 5px 1em;
 }
