@@ -14,8 +14,8 @@
           <h1></h1>
           <h3 id="monthAndYear"></h3>
           <div class="button-container-calendar">
-            <button id="previous" onclick="previous()">‹</button>
-            <button id="next" onclick="next()">›</button>
+            <button id="previous">‹</button>
+            <button id="next">›</button>
           </div>
           <table class="table-calendar" id="calendar" data-lang="en">
             <thead id="thead-month"></thead>
@@ -23,7 +23,7 @@
           </table>
           <div class="footer-container-calendar">
             <label for="month"> </label>
-            <select id="month" onchange="jump()">
+            <select id="month">
               <option value="0">January</option>
               <option value="1">Febuary</option>
               <option value="2">March</option>
@@ -37,31 +37,25 @@
               <option value="10">November</option>
               <option value="11">December</option>
             </select>
-            <select id="year" onchange="jump()"></select>
+            <select id="year"></select>
           </div>
         </div>
         <div id="left">
           <h1>Developer Journal</h1>
-          <div id="journal-section">
+          <div class="journal-section">
             <h3 id="dateHeader">Today</h3>
-            <ul id="journalList">
-              <li data-journal-id="1">
-                <strong>journal Title</strong>
-                - Journal Description on Journal Date
-                <button class="delete-journal" onclick="deletejournal(1)">Delete</button>
-              </li>
-            </ul>
+            <ul id="journalList"></ul>
           </div>
-          <div id="journal-section">
+          <div class="journal-section">
             <h3>Add Journal Testing</h3>
             <input type="text" id="journalTitle" placeholder="Journal Title" />
             <input type="text" id="journalDescription" placeholder="Journal Description" />
             <input type="date" id="journalDate" />
-            <button id="addjournal" onclick="addjournal()">Save</button>
+            <button id="addjournal">Save</button>
           </div>
         </div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
   </body>
 </html>

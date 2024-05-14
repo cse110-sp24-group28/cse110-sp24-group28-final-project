@@ -1,17 +1,15 @@
 // Define an array to store journals
-let journals = [];
 // TOOD localStorage to store journals
 // each journal object has id, date, title, description
 // using counter to generate unique journal IDs
+
+import { storedObjects } from "./utils/localStorageHelper.js";
 
 let journalIdCounter = 1;
 // TOOD localStorage
 // journalIdCounter should not start from 1
 
-let journalTitleInput = document.getElementById("journalTitle");
-let journalDescriptionInput = document.getElementById("journalDescription");
-let journalDateInput = document.getElementById("journalDate");
-let journalList = document.getElementById("journalList");
+let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
 
 // show today's date under Developer Journal
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,6 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
     day: "numeric", // "20"
   });
   dateHeader.textContent = currentDate;
+  document.getElementById("addjournal").addEventListener("click", addjournal);
+  document.getElementById("previous").addEventListener("click", previous);
+  document.getElementById("next").addEventListener("click", next);
+  document.getElementById("month").addEventListener("change", jump);
+  document.getElementById("year").addEventListener("change", jump);
+  journalTitleInput = document.getElementById("journalTitle");
+  journalDescriptionInput = document.getElementById("journalDescription");
+  journalDateInput = document.getElementById("journalDate");
+  journalList = document.getElementById("journalList");
+  showCalendar(currentMonth, currentYear);
 });
 
 function addjournal() {
@@ -37,12 +45,15 @@ function addjournal() {
     // create a unique journal ID
     let journalId = journalIdCounter++;
 
-    journals.push({
-      id: journalId,
-      date: dateWithTime, // store date with time
-      title: title,
-      description: description,
-    });
+    storedObjects.journals = [
+      ...storedObjects.journals,
+      {
+        id: journalId,
+        date: dateWithTime, // store date with time
+        title: title,
+        description: description,
+      },
+    ];
     showCalendar(currentMonth, currentYear);
     journalDateInput.value = "";
     journalTitleInput.value = "";
@@ -52,13 +63,13 @@ function addjournal() {
 }
 
 function deletejournal(journalId) {
-  let journalIndex = journals.findIndex((journal) => journal.id === journalId);
-  if (journalIndex !== -1) {
-    // Remove the journal from the journals array
-    journals.splice(journalIndex, 1);
-    showCalendar(currentMonth, currentYear);
-    displayjournals();
-  }
+  // Remove the journal from the journals array
+  storedObjects.journals = storedObjects.journals.filter((journal) => {
+    return journal.id !== journalId;
+  });
+
+  showCalendar(currentMonth, currentYear);
+  displayjournals();
 }
 
 function displayjournals() {
@@ -118,7 +129,6 @@ $dataHead += "</tr>";
 document.getElementById("thead-month").innerHTML = $dataHead;
 
 let monthAndYear = document.getElementById("monthAndYear");
-showCalendar(currentMonth, currentYear);
 
 // to the next month
 function next() {
@@ -200,13 +210,14 @@ function createjournalTooltip(date, month, year) {
             ${journalDate.toLocaleDateString()}`;
     let journalElement = document.createElement("p");
     journalElement.innerHTML = journalText;
+    journalElement.addEventListener("click", deletejournal);
     tooltip.appendChild(journalElement);
   }
   return tooltip;
 }
 
 function getjournalsOnDate(date, month, year) {
-  return journals.filter(function (journal) {
+  return storedObjects.journals.filter(function (journal) {
     let journalDate = new Date(journal.date);
     return journalDate.getDate() === date && journalDate.getMonth() === month && journalDate.getFullYear() === year;
   });
@@ -219,5 +230,3 @@ function hasjournalOnDate(date, month, year) {
 function daysInMonth(iMonth, iYear) {
   return 32 - new Date(iYear, iMonth, 32).getDate();
 }
-
-showCalendar(currentMonth, currentYear);
