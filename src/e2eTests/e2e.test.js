@@ -1,5 +1,5 @@
 /* eslint-disable */
-/* run index.html first, then run e2e test */
+/* run index.html first, then run e2e test locally*/
 describe("Basic user flow for Website", () => {
   beforeAll(async () => {
     await page.goto("http://127.0.0.1:5500/src/index.html");

@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   showCalendar(currentMonth, currentYear);
 });
 
-function generateUniqueId() {
+export function generateUniqueId() {
   return "_" + Math.random().toString(36);
 }
 
@@ -109,7 +109,7 @@ let currentYear = today.getFullYear();
 let selectYear = document.getElementById("year");
 let selectMonth = document.getElementById("month");
 let createYear = generate_year_range(2000, 2080);
-document.getElementById("year").innerHTML = createYear;
+if (document.getElementById("year")) document.getElementById("year").innerHTML = createYear;
 
 let calendar = document.getElementById("calendar");
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -121,7 +121,7 @@ for (let dhead in days) {
 }
 $dataHead += "</tr>";
 
-document.getElementById("thead-month").innerHTML = $dataHead;
+if (document.getElementById("thead-month")) document.getElementById("thead-month").innerHTML = $dataHead;
 
 let monthAndYear = document.getElementById("monthAndYear");
 
