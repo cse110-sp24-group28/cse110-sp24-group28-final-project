@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { sum } from "./sum.js";
 import { add } from "../utils/localStorageHelper.js";
 
