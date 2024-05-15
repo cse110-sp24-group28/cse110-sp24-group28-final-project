@@ -1,3 +1,7 @@
+export const add = (a, b) => {
+  return a + b;
+};
+
 export const saveObject = (key, obj) => {
   localStorage.setItem(key, JSON.stringify(obj));
 };
@@ -25,5 +29,3 @@ export const storedObjects = new Proxy(
     },
   },
 );
-
-console.log(storedObjects.journals);

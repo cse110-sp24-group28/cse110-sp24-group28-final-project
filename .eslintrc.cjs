@@ -12,7 +12,7 @@ module.exports = {
       },
       files: ["{.eslintrc.{js,cjs},src/tests/*.js}"],
       parserOptions: {
-        sourceType: "script",
+        sourceType: "module",
       },
       rules: {
         "no-unused-vars": "off",
