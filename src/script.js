@@ -1,13 +1,4 @@
-// Define an array to store journals
-// TOOD localStorage to store journals
-// each journal object has id, date, title, description
-// using counter to generate unique journal IDs
-
 import { storedObjects } from "./utils/localStorageHelper.js";
-
-let journalIdCounter = 1;
-// TOOD localStorage
-// journalIdCounter should not start from 1
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
 
@@ -33,6 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
   showCalendar(currentMonth, currentYear);
 });
 
+function generateUniqueId() {
+  return "_" + Math.random().toString(36);
+}
+
 function addjournal() {
   let dateInput = journalDateInput.value; // YYYY-MM-DD
   let title = journalTitleInput.value;
@@ -43,7 +38,7 @@ function addjournal() {
     let dateWithTime = `${dateInput}T12:00:00`;
 
     // create a unique journal ID
-    let journalId = journalIdCounter++;
+    let journalId = generateUniqueId();
 
     storedObjects.journals = [
       ...storedObjects.journals,
