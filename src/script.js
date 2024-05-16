@@ -1,10 +1,10 @@
 import { storedObjects } from "./utils/localStorageHelper.js";
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
-
+var dateHeader;
 // show today's date under Developer Journal
 document.addEventListener("DOMContentLoaded", function () {
-  var dateHeader = document.getElementById("dateHeader");
+  dateHeader = document.getElementById("dateHeader");
   var currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "long", // "Monday"
     year: "numeric", // "2022"
@@ -71,7 +71,13 @@ function displayjournals() {
   journalList.innerHTML = "";
   // for (let i = 0; i < journals.length; i++) { // all journals
   //   let journal = journals[i];
-  let todayList = getjournalsOnDate(today.getDate(), currentMonth, currentYear); // show today's journals
+  // let todayList = getjournalsOnDate(today.getDate(), currentMonth, currentYear); // show today's journals
+  let currentDate = new Date(dateHeader.textContent);
+  let currentDay = currentDate.getDate();
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
+  //let todayList = getjournalsOnDate(today.getDate(), currentMonth, currentYear); // show today's journals
+  let todayList = getjournalsOnDate(currentDay, currentMonth, currentYear); // show journals of clicked day on calendar
   for (let i = 0; i < todayList.length; i++) {
     let journal = todayList[i];
     let journalDate = new Date(journal.date);
@@ -189,6 +195,21 @@ function showCalendar(month, year) {
     }
     tbl.appendChild(row);
   }
+  // change journal list header to date clicked on calendar
+  tbl.addEventListener("click", function (event) {
+    let clickedCell = event.target.closest(".date-picker");
+    if (clickedCell) {
+      let clickedDate = new Date(year, month, clickedCell.dataset.date);
+      let clickedDateString = clickedDate.toLocaleDateString("en-US", {
+        weekday: "long", // "Monday"
+        year: "numeric", // "2022"
+        month: "long", // "July"
+        day: "numeric", // "20"
+      });
+      dateHeader.textContent = clickedDateString;
+      displayjournals();
+    }
+  });
   displayjournals();
 }
 
