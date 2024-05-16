@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Developer Journal</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container-calendar">
+        <div id="right">
+          <button id="create">Create</button>
+          <h1></h1>
+          <h3 id="monthAndYear"></h3>
+          <div class="button-container-calendar">
+            <button id="previous">‹</button>
+            <button id="next">›</button>
+          </div>
+          <table class="table-calendar" id="calendar" data-lang="en">
+            <thead id="thead-month"></thead>
+            <tbody id="calendar-body"></tbody>
+          </table>
+          <div class="footer-container-calendar">
+            <label for="month"> </label>
+            <select id="month">
+              <option value="0">January</option>
+              <option value="1">Febuary</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+            <select id="year"></select>
+          </div>
+        </div>
+        <div id="left">
+          <h1>Developer Journal</h1>
+          <div class="journal-section">
+            <h3 id="dateHeader">Today</h3>
+            <ul id="journalList"></ul>
+          </div>
+          <div class="journal-section">
+            <h3>Add Journal Testing</h3>
+            <input type="text" id="journalTitle" placeholder="Journal Title" />
+            <input type="text" id="journalDescription" placeholder="Journal Description" />
+            <input type="date" id="journalDate" />
+            <button id="addjournal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>

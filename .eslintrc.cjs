@@ -12,7 +12,10 @@ module.exports = {
       },
       files: ["{.eslintrc.{js,cjs},src/tests/*.js}"],
       parserOptions: {
-        sourceType: "script",
+        sourceType: "module",
+      },
+      rules: {
+        "no-unused-vars": "off",
       },
     },
   ],
@@ -20,5 +23,10 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    // Setting the no-unused-vars rule to warn globally
+    "no-unused-vars": "warn",
+    // Optionally, ignore variables that start with an underscore
+    // "no-unused-vars": ["warn", { "varsIgnorePattern": "^_" }]
+  },
 };
