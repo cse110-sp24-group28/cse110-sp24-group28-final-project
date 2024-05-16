@@ -1,7 +1,5 @@
 # cse110-sp24-group28 FINAL PROJECT
 
-https://github.com/cse110-sp24-group28/cse110-sp24-group28/blob/main/admin/team.md
-
 After cloning the repository, please install npm
 https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-version-manager-to-install-nodejs-and-npm
 
@@ -13,3 +11,5 @@ for vscode, install the prettier extension: https://marketplace.visualstudio.com
 
 for webstorm, go to preferences and enable format on save
 
+in order to run the application, just run the command ```npm run dev``` rather than
+use live server (to keep things consistent between team members)
