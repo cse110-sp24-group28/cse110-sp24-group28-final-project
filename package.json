@@ -10,7 +10,8 @@
     "format": "npx prettier --write '**/*.{js,html,css}'",
     "format-check": "npx prettier --check '**/*.{js,html,css}'",
     "prepare": "husky",
-    "lint": "npx eslint '**/*.js'"
+    "lint": "npx eslint '**/*.js'",
+    "dev": "node live-server.js"
   },
   "author": "",
   "license": "ISC",
