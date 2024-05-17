@@ -23,20 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
   journalDateInput = document.getElementById("journalDate");
   journalList = document.getElementById("journalList");
   showCalendar(currentMonth, currentYear);
-  
+
   // x button back to index.html
   var closeButton = document.getElementById("close-button");
-  closeButton.addEventListener("click", function() {
-    window.location.href = 'index.html'; // go back to index.html
+  closeButton.addEventListener("click", function () {
+    window.location.href = "index.html"; // go back to index.html
   });
 
   // save button
   var saveButton = document.querySelector('.journal-form button[type="submit"]');
-  saveButton.addEventListener("click", function(event) {
+  saveButton.addEventListener("click", function (event) {
     // do saving here**
-    window.location.href = 'index.html'; // go back to index.html after save 
-  });;
-
+    window.location.href = "index.html"; // go back to index.html after save
+  });
 });
 
 export function generateUniqueId() {
