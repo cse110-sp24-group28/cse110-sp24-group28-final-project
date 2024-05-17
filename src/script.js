@@ -11,6 +11,23 @@ document.addEventListener("DOMContentLoaded", function () {
     month: "long", // "July"
     day: "numeric", // "20"
   });
+
+  //Go to journal.html when you press create
+  document.getElementById("create").addEventListener("click", function() {
+    window.location.href = 'journal.html'; // Redirect to journal.html
+  });
+
+  //Go to journal.html when you press task inside journal
+  document.getElementById("task").addEventListener("click", function() {
+    window.location.href = 'task.html'; // Redirect to task.html from journal
+  });
+
+  //Go to journal.html when you press create
+  document.getElementById("journal").addEventListener("click", function() {
+    window.location.href = 'journal.html'; // Redirect to journal.html from task
+  });
+
+
   dateHeader.textContent = currentDate;
   document.getElementById("addjournal").addEventListener("click", addjournal);
   document.getElementById("previous").addEventListener("click", previous);
@@ -22,6 +39,20 @@ document.addEventListener("DOMContentLoaded", function () {
   journalDateInput = document.getElementById("journalDate");
   journalList = document.getElementById("journalList");
   showCalendar(currentMonth, currentYear);
+  
+  // x button back to index.html
+  var closeButton = document.getElementById("close-button");
+  closeButton.addEventListener("click", function() {
+    window.location.href = 'index.html'; // go back to index.html
+  });
+
+  // save button
+  var saveButton = document.querySelector('.journal-form button[type="submit"]');
+  saveButton.addEventListener("click", function(event) {
+    // do saving here**
+    window.location.href = 'index.html'; // go back to index.html after save 
+  });;
+
 });
 
 export function generateUniqueId() {

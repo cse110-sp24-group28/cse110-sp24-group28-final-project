@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Journal Task Interface</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1 style = "color: rgb(0,23,128); font-size: 30px; margin: 0" id = "dateHeader">Today</h1>
+    <div class="container">
+        <div class="close-button-container">
+            <button id="close-button" class="btn-small">X</button>
+        </div>
+        <div class="header centered">
+            <button id="journal">Journal</button>
+            <button id="task">Task</button>
+        
+            
+        </div>
+        
+        <div class="content centered">
+            <form class="journal-form">
+                <div class="input-group">
+                    <label for="journal-title">Journal Title:</label>
+                    <input type="text" id="journal-title" name="journal-title" placeholder="Type...">
+                    <button type="button" id="update-title" class="btn-small">Update</button>
+                </div>
+                <textarea id="journal-details" name="journal-details" placeholder="Type here..."></textarea>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
