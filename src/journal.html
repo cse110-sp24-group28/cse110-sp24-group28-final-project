@@ -2,35 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Journal Task Interface</title>
+<meta name="viewport" content="width=device-width, margin = auto">
 <link rel="stylesheet" href="styles.css">
+<title>Create Journal</title>
 </head>
 
-<body>
-    <h1 style = "color: rgb(0,23,128); font-size: 30px; margin: 0" id = "dateHeader">Today</h1>
-    <div class="container">
-        <div class="close-button-container">
-            <button id="close-button" class="btn-small">X</button>
-        </div>
+<body> 
+    <h1 style="color: rgb(0, 23, 128); font-size: 30px; margin: 0" id="dateHeader">Today</h1>
+    <div class="journal-section">
         <div class="header centered">
+            <button id="close" onclick="window.location.href = 'index.html'">X</button>
             <button id="journal">Journal</button>
-            <button id="task">Task</button>
+            <button id="task" onclick="window.location.href = 'task.html'">Task</button>
+        </div>
+        <br>
         
+        <form id="journalForm">
             
-        </div>
-        
-        <div class="content centered">
-            <form class="journal-form">
-                <div class="input-group">
-                    <label for="journal-title">Journal Title:</label>
-                    <input type="text" id="journal-title" name="journal-title" placeholder="Type...">
-                    <button type="button" id="update-title" class="btn-small">Update</button>
-                </div>
-                <textarea id="journal-details" name="journal-details" placeholder="Type here..."></textarea>
-                <button type="submit">Save</button>
-            </form>
-        </div>
+            
+            <h3>Journal Name</h3>
+            <input type="text" id="journalTitle" name="journalTitle" placeholder="Journal Title" required />
+    
+            <h3>Journal Entry</h3>
+            <textarea id="journal-details" name="journal-details" rows="5" placeholder="Type here..." required></textarea>
+            <br>     
+            <button id="saveJournal">Save</button>
+        </form>
     </div>
     <script src="script.js"></script>
 </body>
