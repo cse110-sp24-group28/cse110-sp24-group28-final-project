@@ -12,22 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     day: "numeric", // "20"
   });
 
-  //Go to journal.html when you press create
-  document.getElementById("create").addEventListener("click", function() {
-    window.location.href = 'journal.html'; // Redirect to journal.html
-  });
-
-  //Go to journal.html when you press task inside journal
-  document.getElementById("task").addEventListener("click", function() {
-    window.location.href = 'task.html'; // Redirect to task.html from journal
-  });
-
-  //Go to journal.html when you press create
-  document.getElementById("journal").addEventListener("click", function() {
-    window.location.href = 'journal.html'; // Redirect to journal.html from task
-  });
-
-
   dateHeader.textContent = currentDate;
   document.getElementById("addjournal").addEventListener("click", addjournal);
   document.getElementById("previous").addEventListener("click", previous);
