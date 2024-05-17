@@ -1,38 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, margin = auto">
-<link rel="stylesheet" href="styles.css">
-<title>Create Journal</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, margin = auto" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Create Journal</title>
+  </head>
 
-<body> 
+  <body>
     <h1 style="color: rgb(0, 23, 128); font-size: 30px; margin: 0" id="dateHeader">Today</h1>
     <div class="journal-section">
-        <div class="header centered">
-            <button id="close" onclick="window.location.href = 'index.html'">X</button>
-            <button id="journal">Journal</button>
-            <button id="task" onclick="window.location.href = 'task.html'">Task</button>
-        </div>
-        <br>
-        
-        <form id="journalForm">
-            
-            
-            <h3>Journal Name</h3>
-            <input type="text" id="journalTitle" name="journalTitle" placeholder="Journal Title" required />
-    
-            <h3>Journal Entry</h3>
-            <textarea id="journal-details" name="journal-details" rows="5" placeholder="Type here..." required></textarea>
-            <br>     
-            <button id="saveJournal">Save</button>
-        </form>
+      <div class="header centered">
+        <button id="close" onclick="window.location.href = 'index.html'">X</button>
+        <button id="journal">Journal</button>
+        <button id="task" onclick="window.location.href = 'task.html'">Task</button>
+      </div>
+      <br />
+
+      <form id="journalForm">
+        <h3>Journal Name</h3>
+        <input type="text" id="journalTitle" name="journalTitle" placeholder="Journal Title" required />
+
+        <h3>Journal Entry</h3>
+        <textarea id="journal-details" name="journal-details" rows="5" placeholder="Type here..." required></textarea>
+        <br />
+        <button id="saveJournal">Save</button>
+      </form>
     </div>
-    <script src="script.js"></script>
-</body>
+    <script src="script.js" type="module"></script>
+  </body>
 </html>
-
-
-
-
