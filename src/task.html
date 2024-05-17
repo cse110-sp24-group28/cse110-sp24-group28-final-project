@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=20%, margin = auto" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Create Task</title>
+  </head>
+  <body>
+    <h1 style="color: rgb(0, 23, 128); font-size: 30px; margin: 0" id="dateHeader">Today</h1>
+    <div class="journal-section">
+      <form id="taskForm">
+        <h3>Task Name</h3>
+        <input type="text" id="taskTitle" name="taskTitle" placeholder="Task Title" required />
+
+        <h3>Task Details</h3>
+        <textarea id="task-details" name="task-details" rows="5" placeholder="Task Details" required></textarea>
+
+        <h3>Task Due Date</h3>
+        <input type="date" id="dueDate" name="dueDate" required /><br /><br />
+
+        <button id="addTask">Save</button>
+      </form>
+    </div>
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
