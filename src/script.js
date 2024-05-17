@@ -1,10 +1,10 @@
 import { storedObjects } from "./utils/localStorageHelper.js";
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
-
+var dateHeader;
 // show today's date under Developer Journal
 document.addEventListener("DOMContentLoaded", function () {
-  var dateHeader = document.getElementById("dateHeader");
+  dateHeader = document.getElementById("dateHeader");
   var currentDate = new Date().toLocaleDateString("en-US", {
     weekday: "long", // "Monday"
     year: "numeric", // "2022"
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   showCalendar(currentMonth, currentYear);
 });
 
-function generateUniqueId() {
+export function generateUniqueId() {
   return "_" + Math.random().toString(36);
 }
 
@@ -71,7 +71,13 @@ function displayjournals() {
   journalList.innerHTML = "";
   // for (let i = 0; i < journals.length; i++) { // all journals
   //   let journal = journals[i];
-  let todayList = getjournalsOnDate(today.getDate(), currentMonth, currentYear); // show today's journals
+  // let todayList = getjournalsOnDate(today.getDate(), currentMonth, currentYear); // show today's journals
+  let currentDate = new Date(dateHeader.textContent);
+  let currentDay = currentDate.getDate();
+  let currentMonth = currentDate.getMonth();
+  let currentYear = currentDate.getFullYear();
+  //let todayList = getjournalsOnDate(today.getDate(), currentMonth, currentYear); // show today's journals
+  let todayList = getjournalsOnDate(currentDay, currentMonth, currentYear); // show journals of clicked day on calendar
   for (let i = 0; i < todayList.length; i++) {
     let journal = todayList[i];
     let journalDate = new Date(journal.date);
@@ -109,7 +115,7 @@ let currentYear = today.getFullYear();
 let selectYear = document.getElementById("year");
 let selectMonth = document.getElementById("month");
 let createYear = generate_year_range(2000, 2080);
-document.getElementById("year").innerHTML = createYear;
+if (document.getElementById("year")) document.getElementById("year").innerHTML = createYear;
 
 let calendar = document.getElementById("calendar");
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -121,7 +127,7 @@ for (let dhead in days) {
 }
 $dataHead += "</tr>";
 
-document.getElementById("thead-month").innerHTML = $dataHead;
+if (document.getElementById("thead-month")) document.getElementById("thead-month").innerHTML = $dataHead;
 
 let monthAndYear = document.getElementById("monthAndYear");
 
@@ -189,6 +195,21 @@ function showCalendar(month, year) {
     }
     tbl.appendChild(row);
   }
+  // change journal list header to date clicked on calendar
+  tbl.addEventListener("click", function (event) {
+    let clickedCell = event.target.closest(".date-picker");
+    if (clickedCell) {
+      let clickedDate = new Date(year, month, clickedCell.dataset.date);
+      let clickedDateString = clickedDate.toLocaleDateString("en-US", {
+        weekday: "long", // "Monday"
+        year: "numeric", // "2022"
+        month: "long", // "July"
+        day: "numeric", // "20"
+      });
+      dateHeader.textContent = clickedDateString;
+      displayjournals();
+    }
+  });
   displayjournals();
 }
 
