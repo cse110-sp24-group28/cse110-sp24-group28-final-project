@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="styles.css" />
     <title>Create Journal</title>
   </head>
-
   <body>
     <h1 style="color: rgb(0, 23, 128); font-size: 30px; margin: 0" id="dateHeader">Today</h1>
     <div class="journal-section">
@@ -16,13 +15,11 @@
         <button id="task" onclick="window.location.href = 'task.html'">Task</button>
       </div>
       <br />
-
       <form id="journalForm">
         <h3>Journal Name</h3>
         <input type="text" id="journalTitle" name="journalTitle" placeholder="Journal Title" required />
-
         <h3>Journal Entry</h3>
-        <textarea id="journal-details" name="journal-details" rows="5" placeholder="Type here..." required></textarea>
+        <textarea id="journalDetails" name="journalDetails" rows="5" placeholder="Type here..." required></textarea>
         <br />
         <button type="submit" id="saveJournal">Save</button>
       </form>
@@ -31,7 +28,8 @@
       import { saveObject, getObject } from './localStorageHelper.js';
       import { generateUniqueId } from './script.js';
 
-      document.getElementById('journalForm').addEventListener('submit', function() {
+      document.getElementById('journalForm').addEventListener('submit', function(event) {
+        event.preventDefault();
         const title = document.getElementById('journalTitle').value;
         const details = document.getElementById('journalDetails').value;
         const id = generateUniqueId();
@@ -40,6 +38,9 @@
         let journals = getObject('journals') || [];
         journals.push(journal);
         saveObject('journals', journals);
+
+        console.log('Saved journal:', journal); // Log saved journal
+        console.log('All journals:', journals); // Log all journals
 
         window.location.href = 'index.html';
       });
