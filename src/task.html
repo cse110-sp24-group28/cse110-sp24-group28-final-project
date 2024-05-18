@@ -24,9 +24,29 @@
         <h3>Task Due Date</h3>
         <input type="date" id="dueDate" name="dueDate" required /><br /><br />
 
-        <button id="addTask">Save</button>
+        <button type="submit" id="addTask">Save</button>
       </form>
     </div>
-    <script src="script.js" type="module"></script>
+    <script type="module">
+      import { saveObject, getObject } from './localStorageHelper.js';
+      import { generateUniqueId } from './script.js';
+
+      document.getElementById('taskForm').addEventListener('submit', function() {
+        const title = document.getElementById('taskTitle').value;
+        const details = document.getElementById('taskDetails').value;
+        const dueDate = document.getElementById('dueDate').value;
+        const id = generateUniqueId();
+        const task = { id, title, details, dueDate };
+
+        let tasks = getObject('tasks') || [];
+        tasks.push(task);
+        saveObject('tasks', tasks);
+
+        console.log('Saved task:', task); // Log saved task
+        console.log('All tasks:', tasks); // Log all tasks
+
+        window.location.href = 'index.html';
+      });
+    </script>
   </body>
 </html>

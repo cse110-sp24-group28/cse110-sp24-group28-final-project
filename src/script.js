@@ -1,6 +1,7 @@
 import { storedObjects } from "./utils/localStorageHelper.js";
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
+let taskTitle, taskDetails, taskDueDate;
 var dateHeader;
 // show today's date under Developer Journal
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
   journalDateInput = document.getElementById("journalDate");
   journalList = document.getElementById("journalList");
   showCalendar(currentMonth, currentYear);
+  taskTitle = document.getElementById('taskTitle');
+  taskDetails = document.getElementById('task-details');
+  taskDueDate = document.getElementById('dueDate');
 
   // x button back to index.html
   var closeButton = document.getElementById("close-button");
@@ -34,7 +38,25 @@ document.addEventListener("DOMContentLoaded", function () {
   var saveButton = document.querySelector('.journal-form button[type="submit"]');
   saveButton.addEventListener("click", function (event) {
     // do saving here**
+    const journalData = {
+      journalName: journalTitleInput.value,
+      journalDescriptionInput: journalDescriptionInput.value,
+      journalDateInput: journalDateInput.value
+    }
+  
+    localStorage.setItem('journals', JSON.stringify(journalData));
     window.location.href = "index.html"; // go back to index.html after save
+  });
+
+  var taskSaveButton = document.getElementById("addTask");
+  taskSaveButton.addEventListener("click", function (event) {
+    const taskData = {
+      taskName: taskTitle.value,
+      taskDetails: taskDetails.value,
+      taskDueDate: taskDueDate.value
+    }
+    localStorage.setItem('tasks', JSON.stringify(taskData));
+    window.location.href = "index.html";
   });
 });
 

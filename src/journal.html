@@ -24,9 +24,25 @@
         <h3>Journal Entry</h3>
         <textarea id="journal-details" name="journal-details" rows="5" placeholder="Type here..." required></textarea>
         <br />
-        <button id="saveJournal">Save</button>
+        <button type="submit" id="saveJournal">Save</button>
       </form>
     </div>
-    <script src="script.js" type="module"></script>
+    <script type="module">
+      import { saveObject, getObject } from './localStorageHelper.js';
+      import { generateUniqueId } from './script.js';
+
+      document.getElementById('journalForm').addEventListener('submit', function() {
+        const title = document.getElementById('journalTitle').value;
+        const details = document.getElementById('journalDetails').value;
+        const id = generateUniqueId();
+        const journal = { id, title, details, date: new Date().toISOString() };
+        
+        let journals = getObject('journals') || [];
+        journals.push(journal);
+        saveObject('journals', journals);
+
+        window.location.href = 'index.html';
+      });
+    </script>
   </body>
 </html>
