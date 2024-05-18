@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { sum } from "./sum.js";
-import { add } from "../utils/localStorageHelper.js";
+import { add } from "../localStorageHelper.js";
 import { generateUniqueId } from "../script.js";
 
 test("adds 1 + 2 to equal 3", () => {
