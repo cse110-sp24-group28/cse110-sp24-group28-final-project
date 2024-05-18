@@ -29,23 +29,23 @@
       // imported the ids from the js file
       // defined each component of user input from journal form after the form is submitted
       // adds new journal to array of preexisting journalsadde
-      import { saveObject, getObject } from './localStorageHelper.js';
-      import { generateUniqueId } from './script.js';
+      import { saveObject, getObject } from "./localStorageHelper.js";
+      import { generateUniqueId } from "./script.js";
       //
-      document.getElementById('journalForm').addEventListener('submit', function() {
-        const title = document.getElementById('journalTitle').value;
-        const details = document.getElementById('journalDetails').value;
+      document.getElementById("journalForm").addEventListener("submit", function () {
+        const title = document.getElementById("journalTitle").value;
+        const description = document.getElementById("journalDetails").value;
         const id = generateUniqueId();
-        const journal = { id, title, details, date: new Date().toISOString() };
-        
-        let journals = getObject('journals') || [];
+        const journal = { id, title, description, date: new Date().toISOString() };
+
+        let journals = getObject("journals") || [];
         journals.push(journal);
-        saveObject('journals', journals);
+        saveObject("journals", journals);
 
-        console.log('Saved journal:', journal); // Log saved journal
-        console.log('All journals:', journals); // Log all journals
+        console.log("Saved journal:", journal); // Log saved journal
+        console.log("All journals:", journals); // Log all journals
 
-        window.location.href = 'index.html';
+        window.location.href = "index.html";
       });
     </script>
   </body>

@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
   journalDateInput = document.getElementById("journalDate");
   journalList = document.getElementById("journalList");
 
-  taskTitle = document.getElementById('taskTitle');
-  taskDetails = document.getElementById('taskDetails');
-  taskDueDate = document.getElementById('dueDate');
+  taskTitle = document.getElementById("taskTitle");
+  taskDetails = document.getElementById("taskDetails");
+  taskDueDate = document.getElementById("dueDate");
 
   showCalendar(currentMonth, currentYear);
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //     journalDescriptionInput: journalDescriptionInput.value,
   //     journalDateInput: journalDateInput.value
   //   }
-  
+
   //   localStorage.setItem('journals', JSON.stringify(journalData));
   //   window.location.href = "index.html"; // go back to index.html after save
   // });
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //     journalDescriptionInput: journalDescriptionInput.value,
   //     journalDateInput: journalDateInput.value
   //   }
-  
+
   //   localStorage.setItem('journals', JSON.stringify(journalData));
   //   window.location.href = "index.html";
   // });
@@ -121,9 +121,9 @@ function deletejournal(journalId) {
 
 // added deletetask, which is the same as deletejournal but for the tasks
 function deletetask(taskId) {
-  let tasks = getObject('tasks') || [];
-  tasks = tasks.filter(task => task.id !== taskId);
-  saveObject('tasks', tasks);
+  let tasks = getObject("tasks") || [];
+  tasks = tasks.filter((task) => task.id !== taskId);
+  saveObject("tasks", tasks);
   displaytasks();
 }
 
@@ -146,7 +146,7 @@ function displayjournals() {
             ${journal.description} on 
             ${journalDate.toLocaleDateString()}`;
 
-      // Add a delete button for each journal item      
+      // Add a delete button for each journal item
       let deleteButton = document.createElement("button");
       deleteButton.className = "delete-journal";
       deleteButton.textContent = "Delete";
@@ -162,10 +162,10 @@ function displayjournals() {
 
 // added displaytasks, which is the same as displayjournals but for the tasks
 function displaytasks() {
-  let tasks = getObject('tasks') || [];
-  console.log('Retrieved tasks:', tasks);
+  let tasks = getObject("tasks") || [];
+  console.log("Retrieved tasks:", tasks);
 
-  const taskList = document.getElementById('taskList');
+  const taskList = document.getElementById("taskList");
   if (!taskList) return;
 
   taskList.innerHTML = "";

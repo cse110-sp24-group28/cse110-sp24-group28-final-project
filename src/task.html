@@ -29,24 +29,24 @@
       // imported the ids from the js file
       // defined each component of user input from task form after the form is submitted
       // adds new task to array of preexisting tasks
-      import { saveObject, getObject } from './localStorageHelper.js';
-      import { generateUniqueId } from './script.js';
+      import { saveObject, getObject } from "./localStorageHelper.js";
+      import { generateUniqueId } from "./script.js";
 
-      document.getElementById('taskForm').addEventListener('submit', function() {
-        const title = document.getElementById('taskTitle').value;
-        const details = document.getElementById('taskDetails').value;
-        const dueDate = document.getElementById('dueDate').value;
+      document.getElementById("taskForm").addEventListener("submit", function () {
+        const title = document.getElementById("taskTitle").value;
+        const details = document.getElementById("taskDetails").value;
+        const dueDate = document.getElementById("dueDate").value;
         const id = generateUniqueId();
         const task = { id, title, details, dueDate };
 
-        let tasks = getObject('tasks') || [];
+        let tasks = getObject("tasks") || [];
         tasks.push(task);
-        saveObject('tasks', tasks);
+        saveObject("tasks", tasks);
 
-        console.log('Saved task:', task); // Log saved task
-        console.log('All tasks:', tasks); // Log all tasks
+        console.log("Saved task:", task); // Log saved task
+        console.log("All tasks:", tasks); // Log all tasks
 
-        window.location.href = 'index.html';
+        window.location.href = "index.html";
       });
     </script>
   </body>
