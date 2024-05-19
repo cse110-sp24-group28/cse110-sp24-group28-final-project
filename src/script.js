@@ -220,7 +220,32 @@ function showCalendar(month, year) {
     }
   });
   displayjournals();
+
+
+  //Display tasks instead of journals when view task button is clicked
+  // Display journals instead of tasks when view journals button is clicked
+  document.getElementById("view-tasks").addEventListener("click", function () {
+    displaytasks();
+    const taskList = document.getElementById("taskList");
+    const journalList = document.getElementById("journalList");
+    if (taskList) taskList.style.display = "block";
+    if (journalList) journalList.style.display = "none";
+
+  });
+  document.getElementById("view-journals").addEventListener("click", function () {
+    displaytasks();
+    if (taskList) taskList.style.display = "none";
+    if (journalList) journalList.style.display = "block";
+
+  });
+
+
+
+
+  
+
 }
+
 
 // for database testing
 function createjournalTooltip(date, month, year) {
