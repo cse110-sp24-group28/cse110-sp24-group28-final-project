@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   dateHeader.textContent = currentDate;
-  document.getElementById("addjournal").addEventListener("click", addjournal);
   document.getElementById("previous").addEventListener("click", previous);
   document.getElementById("next").addEventListener("click", next);
   document.getElementById("month").addEventListener("change", jump);
@@ -30,87 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   showCalendar(currentMonth, currentYear);
 
-  // x button back to index.html
-  // var closeButton = document.getElementById("close-button");
-  // closeButton.addEventListener("click", function () {
-  //   window.location.href = "index.html"; // go back to index.html
-  // });
-
-  // // save button
-  // var saveButton = document.querySelector('.journal-form button[type="submit"]');
-  // saveButton.addEventListener("click", function (event) {
-  //   // do saving here**
-  //   const journalData = {
-  //     journalName: journalTitleInput.value,
-  //     journalDescriptionInput: journalDescriptionInput.value,
-  //     journalDateInput: journalDateInput.value
-  //   }
-
-  //   localStorage.setItem('journals', JSON.stringify(journalData));
-  //   window.location.href = "index.html"; // go back to index.html after save
-  // });
-
-  // var journalSaveButton = document.getElementById("saveJournal");
-  // journalSaveButton.addEventListener("click", function (event) {
-  //   const journalData = {
-  //     journalName: journalTitleInput.value,
-  //     journalDescriptionInput: journalDescriptionInput.value,
-  //     journalDateInput: journalDateInput.value
-  //   }
-
-  //   localStorage.setItem('journals', JSON.stringify(journalData));
-  //   window.location.href = "index.html";
-  // });
-
-  // var taskSaveButton = document.getElementById("addTask");
-  // taskSaveButton.addEventListener("click", function (event) {
-  //   const taskData = {
-  //     taskName: taskTitle.value,
-  //     taskDetails: taskDetails.value,
-  //     taskDueDate: taskDueDate.value
-  //   }
-  //   localStorage.setItem('tasks', JSON.stringify(taskData));
-  //   window.location.href = "index.html";
-  // });
-
   // Load and display journals
   displayjournals();
 
-  // Load and display tasks
-  displaytasks();
+  // // Load and display tasks
+  // displaytasks();
 });
 
 export function generateUniqueId() {
   return "_" + Math.random().toString(36).substr(2, 9);
-}
-
-function addjournal() {
-  let dateInput = journalDateInput.value; // YYYY-MM-DD
-  let title = journalTitleInput.value;
-  let description = journalDescriptionInput.value;
-
-  if (dateInput && title) {
-    // append time "T12:00:00" to avoid timezone issues
-    let dateWithTime = `${dateInput}T12:00:00`;
-
-    // create a unique journal ID
-    let journalId = generateUniqueId();
-
-    storedObjects.journals = [
-      ...storedObjects.journals,
-      {
-        id: journalId,
-        date: dateWithTime, // store date with time
-        title: title,
-        description: description,
-      },
-    ];
-    showCalendar(currentMonth, currentYear);
-    journalDateInput.value = "";
-    journalTitleInput.value = "";
-    journalDescriptionInput.value = "";
-    displayjournals();
-  }
 }
 
 function deletejournal(journalId) {
