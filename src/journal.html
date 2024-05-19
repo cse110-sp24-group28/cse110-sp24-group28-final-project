@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, margin = auto" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Create Journal</title>
+  </head>
+  <body>
+    <h1 style="color: rgb(0, 23, 128); font-size: 30px; margin: 0" id="dateHeader">Today</h1>
+    <div class="journal-section">
+      <div class="header centered">
+        <button id="close" onclick="window.location.href = 'index.html'">X</button>
+        <button id="journal">Journal</button>
+        <button id="task" onclick="window.location.href = 'task.html'">Task</button>
+      </div>
+      <br />
+      <form id="journalForm">
+        <h3>Journal Name</h3>
+        <input type="text" id="journalTitle" name="journalTitle" placeholder="Journal Title" required />
+        <h3>Journal Entry</h3>
+        <textarea id="journalDetails" name="journalDetails" rows="5" placeholder="Type here..." required></textarea>
+        <br />
+        <button type="submit" id="saveJournal">Save</button>
+      </form>
+    </div>
+    <script type="module">
+      // imported functions from local storage helper
+      // imported the ids from the js file
+      // defined each component of user input from journal form after the form is submitted
+      // adds new journal to array of preexisting journalsadde
+      import { saveObject, getObject } from "./localStorageHelper.js";
+      import { generateUniqueId } from "./script.js";
+      //
+      document.getElementById("journalForm").addEventListener("submit", function () {
+        const title = document.getElementById("journalTitle").value;
+        const description = document.getElementById("journalDetails").value;
+        const id = generateUniqueId();
+        const journal = { id, title, description, date: new Date().toISOString() };
+
+        let journals = getObject("journals") || [];
+        journals.push(journal);
+        saveObject("journals", journals);
+
+        console.log("Saved journal:", journal); // Log saved journal
+        console.log("All journals:", journals); // Log all journals
+
+        window.location.href = "index.html";
+      });
+    </script>
+  </body>
+</html>

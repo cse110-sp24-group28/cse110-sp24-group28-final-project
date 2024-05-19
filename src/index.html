@@ -10,8 +10,9 @@
     <div class="wrapper">
       <div class="container-calendar">
         <div id="right">
-          <button id="create">Create</button>
+          <button id="create" onclick="window.location.href = 'journal.html'">Create</button>
           <h1></h1>
+
           <h3 id="monthAndYear"></h3>
           <div class="button-container-calendar">
             <button id="previous">‹</button>
@@ -52,6 +53,17 @@
             <input type="text" id="journalDescription" placeholder="Journal Description" />
             <input type="date" id="journalDate" />
             <button id="addjournal">Save</button>
+          </div>
+          <div class="journal-section">
+            <h3>Add Task</h3>
+            <form id="taskForm">
+              <input type="text" id="taskTitle" name="taskTitle" placeholder="Task Title" required />
+              <textarea id="task-details" name="task-details" rows="5" placeholder="Task Details" required></textarea>
+              <h3>Task Due Date</h3>
+              <input type="date" id="dueDate" name="dueDate" required /><br /><br />
+
+              <button id="addTask">Save</button>
+            </form>
           </div>
         </div>
       </div>

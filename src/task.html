@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="device-width, margin = auto" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Create Task</title>
+  </head>
+  <body>
+    <h1 style="color: rgb(0, 23, 128); font-size: 30px; margin: 0" id="dateHeader">Today</h1>
+    <div class="journal-section">
+      <button id="close" onclick="window.location.href = 'index.html'">X</button>
+      <button id="task" onclick="window.location.href = 'task.html'">Task</button>
+      <button id="journalReturn" onclick="window.location.href = 'journal.html'">Journal</button>
+      <br />
+      <br />
+      <form id="taskForm">
+        <h3>Task Name</h3>
+        <input type="text" id="taskTitle" name="taskTitle" placeholder="Task Title" required />
+        <h3>Task Details</h3>
+        <textarea id="taskDetails" name="taskDetails" rows="5" placeholder="Task Details" required></textarea>
+        <h3>Task Due Date</h3>
+        <input type="date" id="dueDate" name="dueDate" required /><br /><br />
+        <button type="submit" id="addTask">Save</button>
+      </form>
+    </div>
+    <script type="module">
+      // imported functions from local storage helper
+      // imported the ids from the js file
+      // defined each component of user input from task form after the form is submitted
+      // adds new task to array of preexisting tasks
+      import { saveObject, getObject } from "./localStorageHelper.js";
+      import { generateUniqueId } from "./script.js";
+
+      document.getElementById("taskForm").addEventListener("submit", function () {
+        const title = document.getElementById("taskTitle").value;
+        const details = document.getElementById("taskDetails").value;
+        const dueDate = document.getElementById("dueDate").value;
+        const id = generateUniqueId();
+        const task = { id, title, details, dueDate };
+
+        let tasks = getObject("tasks") || [];
+        tasks.push(task);
+        saveObject("tasks", tasks);
+
+        console.log("Saved task:", task); // Log saved task
+        console.log("All tasks:", tasks); // Log all tasks
+
+        window.location.href = "index.html";
+      });
+    </script>
+  </body>
+</html>

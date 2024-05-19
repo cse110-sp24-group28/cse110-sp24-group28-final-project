@@ -20,6 +20,7 @@ export const getObject = (key) => {
 export const storedObjects = new Proxy(
   {
     journals: getObject("journals") ?? [],
+    tasks: getObject("tasks") ?? [],
   },
   {
     set(target, p, newValue, receiver) {
