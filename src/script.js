@@ -221,30 +221,35 @@ function showCalendar(month, year) {
   });
   displayjournals();
 
-
   //Display tasks instead of journals when view task button is clicked
   // Display journals instead of tasks when view journals button is clicked
   document.getElementById("view-tasks").addEventListener("click", function () {
     displaytasks();
     document.getElementById("TitleOfPage").textContent = "Developer Task List";
-
+    document.getElementById("dateHeader").textContent = "";
     //change the title of the page to Developer Tasl
     const taskList = document.getElementById("taskList");
     const journalList = document.getElementById("journalList");
     if (taskList) taskList.style.display = "block";
     if (journalList) journalList.style.display = "none";
-
   });
   document.getElementById("view-journals").addEventListener("click", function () {
     displayjournals();
     document.getElementById("TitleOfPage").textContent = "Developer Journal";
-
+    var dateHeader = document.getElementById("dateHeader");
+    var currentDate = new Date().toLocaleDateString("en-US", {
+      weekday: "long", // "Monday"
+      year: "numeric", // "2022"
+      month: "long", // "July"
+      day: "numeric", // "20"
+    });
+    dateHeader.textContent = currentDate;
+    const taskList = document.getElementById("taskList");
     if (taskList) taskList.style.display = "none";
     if (journalList) journalList.style.display = "block";
+    displayjournals();
   });
-
 }
-
 
 // for database testing
 function createjournalTooltip(date, month, year) {
