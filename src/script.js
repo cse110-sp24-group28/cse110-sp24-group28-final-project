@@ -226,6 +226,9 @@ function showCalendar(month, year) {
   // Display journals instead of tasks when view journals button is clicked
   document.getElementById("view-tasks").addEventListener("click", function () {
     displaytasks();
+    document.getElementById("TitleOfPage").textContent = "Developer Task List";
+
+    //change the title of the page to Developer Tasl
     const taskList = document.getElementById("taskList");
     const journalList = document.getElementById("journalList");
     if (taskList) taskList.style.display = "block";
@@ -233,16 +236,12 @@ function showCalendar(month, year) {
 
   });
   document.getElementById("view-journals").addEventListener("click", function () {
-    displaytasks();
+    displayjournals();
+    document.getElementById("TitleOfPage").textContent = "Developer Journal";
+
     if (taskList) taskList.style.display = "none";
     if (journalList) journalList.style.display = "block";
-
   });
-
-
-
-
-  
 
 }
 
