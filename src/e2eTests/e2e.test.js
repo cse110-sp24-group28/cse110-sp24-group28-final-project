@@ -156,6 +156,7 @@ describe("Basic user flow for Website", () => {
   });
 
   test("Click 'Task' button and navigate to task.html", async () => {
+    await page.click("#create");
     await page.click("#task");
 
     const url = page.url();
@@ -163,6 +164,8 @@ describe("Basic user flow for Website", () => {
   });
 
   test("Click 'Journal' button and navigate to journal.html", async () => {
+    await page.click("#create");
+    await page.click("#task");
     await page.click("#journalReturn");
 
     const url = page.url();
