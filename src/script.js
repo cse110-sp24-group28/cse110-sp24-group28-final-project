@@ -1,7 +1,6 @@
 import { saveObject, getObject, storedObjects } from "./localStorageHelper.js";
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
-let taskTitle, taskDetails, taskDueDate;
 var dateHeader;
 // show today's date under Developer Journal
 document.addEventListener("DOMContentLoaded", function () {
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   dateHeader.textContent = currentDate;
-  document.getElementById("addjournal").addEventListener("click", addjournal);
   document.getElementById("previous").addEventListener("click", previous);
   document.getElementById("next").addEventListener("click", next);
   document.getElementById("month").addEventListener("change", jump);
@@ -24,93 +22,17 @@ document.addEventListener("DOMContentLoaded", function () {
   journalDateInput = document.getElementById("journalDate");
   journalList = document.getElementById("journalList");
 
-  taskTitle = document.getElementById("taskTitle");
-  taskDetails = document.getElementById("taskDetails");
-  taskDueDate = document.getElementById("dueDate");
-
   showCalendar(currentMonth, currentYear);
-
-  // x button back to index.html
-  // var closeButton = document.getElementById("close-button");
-  // closeButton.addEventListener("click", function () {
-  //   window.location.href = "index.html"; // go back to index.html
-  // });
-
-  // // save button
-  // var saveButton = document.querySelector('.journal-form button[type="submit"]');
-  // saveButton.addEventListener("click", function (event) {
-  //   // do saving here**
-  //   const journalData = {
-  //     journalName: journalTitleInput.value,
-  //     journalDescriptionInput: journalDescriptionInput.value,
-  //     journalDateInput: journalDateInput.value
-  //   }
-
-  //   localStorage.setItem('journals', JSON.stringify(journalData));
-  //   window.location.href = "index.html"; // go back to index.html after save
-  // });
-
-  // var journalSaveButton = document.getElementById("saveJournal");
-  // journalSaveButton.addEventListener("click", function (event) {
-  //   const journalData = {
-  //     journalName: journalTitleInput.value,
-  //     journalDescriptionInput: journalDescriptionInput.value,
-  //     journalDateInput: journalDateInput.value
-  //   }
-
-  //   localStorage.setItem('journals', JSON.stringify(journalData));
-  //   window.location.href = "index.html";
-  // });
-
-  // var taskSaveButton = document.getElementById("addTask");
-  // taskSaveButton.addEventListener("click", function (event) {
-  //   const taskData = {
-  //     taskName: taskTitle.value,
-  //     taskDetails: taskDetails.value,
-  //     taskDueDate: taskDueDate.value
-  //   }
-  //   localStorage.setItem('tasks', JSON.stringify(taskData));
-  //   window.location.href = "index.html";
-  // });
 
   // Load and display journals
   displayjournals();
 
-  // Load and display tasks
-  displaytasks();
+  // // Load and display tasks
+  // displaytasks();
 });
 
 export function generateUniqueId() {
   return "_" + Math.random().toString(36).substr(2, 9);
-}
-
-function addjournal() {
-  let dateInput = journalDateInput.value; // YYYY-MM-DD
-  let title = journalTitleInput.value;
-  let description = journalDescriptionInput.value;
-
-  if (dateInput && title) {
-    // append time "T12:00:00" to avoid timezone issues
-    let dateWithTime = `${dateInput}T12:00:00`;
-
-    // create a unique journal ID
-    let journalId = generateUniqueId();
-
-    storedObjects.journals = [
-      ...storedObjects.journals,
-      {
-        id: journalId,
-        date: dateWithTime, // store date with time
-        title: title,
-        description: description,
-      },
-    ];
-    showCalendar(currentMonth, currentYear);
-    journalDateInput.value = "";
-    journalTitleInput.value = "";
-    journalDescriptionInput.value = "";
-    displayjournals();
-  }
 }
 
 function deletejournal(journalId) {
@@ -293,9 +215,37 @@ function showCalendar(month, year) {
     }
   });
   displayjournals();
+
+  //Display tasks instead of journals when view task button is clicked
+  // Display journals instead of tasks when view journals button is clicked
+  document.getElementById("view-tasks").addEventListener("click", function () {
+    displaytasks();
+    document.getElementById("TitleOfPage").textContent = "Developer Task List";
+    document.getElementById("dateHeader").textContent = "";
+    //change the title of the page to Developer Tasl
+    const taskList = document.getElementById("taskList");
+    const journalList = document.getElementById("journalList");
+    if (taskList) taskList.style.display = "block";
+    if (journalList) journalList.style.display = "none";
+  });
+  document.getElementById("view-journals").addEventListener("click", function () {
+    displayjournals();
+    document.getElementById("TitleOfPage").textContent = "Developer Journal";
+    var dateHeader = document.getElementById("dateHeader");
+    var currentDate = new Date().toLocaleDateString("en-US", {
+      weekday: "long", // "Monday"
+      year: "numeric", // "2022"
+      month: "long", // "July"
+      day: "numeric", // "20"
+    });
+    dateHeader.textContent = currentDate;
+    const taskList = document.getElementById("taskList");
+    if (taskList) taskList.style.display = "none";
+    if (journalList) journalList.style.display = "block";
+    displayjournals();
+  });
 }
 
-// for database testing
 function createjournalTooltip(date, month, year) {
   let tooltip = document.createElement("div");
   tooltip.className = "journal-tooltip";

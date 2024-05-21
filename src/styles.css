@@ -25,6 +25,7 @@ body {
   background: #f5f5f5;
   margin: 20px 0;
   border: 1px solid #ccc;
+  width: 500px;
 }
 
 .container-calendar #left h1 {
@@ -193,4 +194,10 @@ body {
   border: 1px solid #bfc5c5;
   border-radius: 3px;
   padding: 5px 1em;
+}
+
+#create,
+#view-journals,
+#view-tasks {
+  margin-right: 10px;
 }

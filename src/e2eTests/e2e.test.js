@@ -5,7 +5,6 @@ describe("Basic user flow for Website", () => {
     await page.goto("http://127.0.0.1:1234");
   });
 
-  // User Story 1
   test("Navigating to Previous Month", async () => {
     // Get the current month and year before clicking "Previous"
     const monthAndYearBefore = await page.evaluate(() => {
@@ -112,6 +111,7 @@ describe("Basic user flow for Website", () => {
     // Assert that the month and year have changed correctly
     expect(monthAndYearAfter).toBe("January 2023");
   });
+
   test("Journal List Persists After Page Reload", async () => {
     // Get the initial state of the journalList before reloading the page
     const journalListBefore = await page.evaluate(() => {
@@ -130,9 +130,43 @@ describe("Basic user flow for Website", () => {
     expect(journalListAfter).toBe(journalListBefore);
   });
 
-  // User Story 2
+  test("Task List Persists After Page Reload", async () => {
+    // Get the initial state of the journalList before reloading the page
+    const taskListBefore = await page.evaluate(() => {
+      return document.getElementById("taskList").innerHTML;
+    });
 
-  // User Story 3
+    // Reload the page
+    await page.reload();
 
-  //
+    // Get the state of the journalList after reloading the page
+    const taskListAfter = await page.evaluate(() => {
+      return document.getElementById("taskList").innerHTML;
+    });
+
+    // Compare the initial and current states of the journalList
+    expect(taskListAfter).toBe(taskListBefore);
+  });
+
+  test("Click 'Create' button and navigate to journal.html", async () => {
+    await page.click("#create");
+
+    const url = page.url();
+    expect(url).toContain("journal.html");
+  });
+
+  // works locally
+  // test("Click 'Task' button and navigate to task.html", async () => {
+  //   await page.click("#task");
+
+  //   const url1 = page.url();
+  //   expect(url1).toContain("task.html");
+  // });
+
+  // test("Click 'Journal' button and navigate to journal.html", async () => {
+  //   await page.click("#journalReturn");
+
+  //   const url2 = page.url();
+  //   expect(url2).toContain("journal.html");
+  // });
 });
