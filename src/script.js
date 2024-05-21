@@ -1,7 +1,6 @@
 import { saveObject, getObject, storedObjects } from "./localStorageHelper.js";
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
-let taskTitle, taskDetails, taskDueDate;
 var dateHeader;
 // show today's date under Developer Journal
 document.addEventListener("DOMContentLoaded", function () {
@@ -22,10 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
   journalDescriptionInput = document.getElementById("journalDescription");
   journalDateInput = document.getElementById("journalDate");
   journalList = document.getElementById("journalList");
-
-  taskTitle = document.getElementById("taskTitle");
-  taskDetails = document.getElementById("taskDetails");
-  taskDueDate = document.getElementById("dueDate");
 
   showCalendar(currentMonth, currentYear);
 
@@ -251,7 +246,6 @@ function showCalendar(month, year) {
   });
 }
 
-// for database testing
 function createjournalTooltip(date, month, year) {
   let tooltip = document.createElement("div");
   tooltip.className = "journal-tooltip";

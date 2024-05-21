@@ -5,7 +5,6 @@ describe("Basic user flow for Website", () => {
     await page.goto("http://127.0.0.1:1234");
   });
 
-  // User Story 1
   test("Navigating to Previous Month", async () => {
     // Get the current month and year before clicking "Previous"
     const monthAndYearBefore = await page.evaluate(() => {
@@ -129,10 +128,4 @@ describe("Basic user flow for Website", () => {
     // Compare the initial and current states of the journalList
     expect(journalListAfter).toBe(journalListBefore);
   });
-
-  // User Story 2
-
-  // User Story 3
-
-  //
 });
