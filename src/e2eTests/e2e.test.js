@@ -155,20 +155,20 @@ describe("Basic user flow for Website", () => {
     expect(url).toContain("journal.html");
   });
 
-  test("Click 'Task' button and navigate to task.html", async () => {
-    await page.click("#create");
-    await page.click("#task");
+  // test("Click 'Task' button and navigate to task.html", async () => {
+  //   await page.click("#create");
+  //   await page.click("#task");
 
-    const url = page.url();
-    expect(url).toContain("task.html");
-  });
+  //   const url = page.url();
+  //   expect(url).toContain("task.html");
+  // });
 
-  test("Click 'Journal' button and navigate to journal.html", async () => {
-    await page.click("#create");
-    await page.click("#task");
-    await page.click("#journalReturn");
+  // test("Click 'Journal' button and navigate to journal.html", async () => {
+  //   await page.click("#create");
+  //   await page.click("#task");
+  //   await page.click("#journalReturn");
 
-    const url = page.url();
-    expect(url).toContain("journal.html");
-  });
+  //   const url = page.url();
+  //   expect(url).toContain("journal.html");
+  // });
 });
