@@ -196,6 +196,8 @@ body {
   padding: 5px 1em;
 }
 
-#create, #view-journals, #view-tasks {
+#create,
+#view-journals,
+#view-tasks {
   margin-right: 10px;
 }
