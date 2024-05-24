@@ -191,7 +191,7 @@ test("getjournalsOnDate should retrieve journals on a specific date", () => {
   localStorage.setItem("journals", JSON.stringify(journals));
 
   // Months and Dates are follow 0 indexing, so we are inputting value-1 to test
-  const journalsOnDate = getjournalsOnDate(12, 2, 2024);
+  const journalsOnDate = getjournalsOnDate(12, 3, 2024);
   expect(journalsOnDate).toEqual(expect.arrayContaining([journal1, journal2]));
   expect(journalsOnDate).not.toContain(journal3);
 });
