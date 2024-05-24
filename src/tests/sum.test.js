@@ -169,21 +169,21 @@ test("getjournalsOnDate should retrieve journals on a specific date", () => {
   const journal1 = {
     id: generateUniqueId(),
     title: "Journal 1",
-    content: "Very special birthday!",
+    description: "Very special birthday!",
     date: "2024-03-13",
   };
 
   const journal2 = {
     id: generateUniqueId(),
     title: "Journal 2",
-    content: "Finally 21",
+    description: "Finally 21",
     date: "2024-03-13",
   };
 
   const journal3 = {
     id: generateUniqueId(),
     title: "Journal 3",
-    content: "Pi Day",
+    description: "Pi Day",
     date: "2025-03-14",
   };
 
@@ -211,7 +211,7 @@ test("hasjournalsOnDate should check if journals exist on a specific date", () =
   const journal = {
     id: generateUniqueId(),
     title: "Journal",
-    content: "First day on the journey. Let's see where this goes.",
+    description: "First day on the journey. Let's see where this goes.",
     date: "2023-10-20",
   };
 
