@@ -2,7 +2,17 @@
  * @jest-environment jsdom
  */
 import { add } from "../localStorageHelper.js";
-import { generateUniqueId, deletetask, deletejournal, displaytasks, displayjournals, generate_year_range, getjournalsOnDate, hasjournalOnDate, daysInMonth} from "../script.js";
+import {
+  generateUniqueId,
+  deletetask,
+  deletejournal,
+  displaytasks,
+  displayjournals,
+  generate_year_range,
+  getjournalsOnDate,
+  hasjournalOnDate,
+  daysInMonth,
+} from "../script.js";
 
 test("add", () => {
   expect(add(3, 4)).toBe(7);
@@ -131,7 +141,6 @@ test("displayjournal should display journals", () => {
   expect(journalList.innerHTML).toContain(journal2.title);
 });
 
-
 test("generate_year_range should create a range of years", () => {
   function generate_year_range(start, end) {
     let years = "";
@@ -143,7 +152,8 @@ test("generate_year_range should create a range of years", () => {
 
   const startYear = 1999;
   const endYear = 2003;
-  const expectedOutput = "<option value='1999'>1999</option><option value='2000'>2000</option><option value='2001'>2001</option><option value='2002'>2002</option><option value='2003'>2003</option>";
+  const expectedOutput =
+    "<option value='1999'>1999</option><option value='2000'>2000</option><option value='2001'>2001</option><option value='2002'>2002</option><option value='2003'>2003</option>";
 
   expect(generate_year_range(startYear, endYear)).toBe(expectedOutput);
 });
@@ -181,7 +191,7 @@ test("getjournalsOnDate should retrieve journals on a specific date", () => {
   localStorage.setItem("journals", JSON.stringify(journals));
 
   // Months and Dates are follow 0 indexing, so we are inputting value-1 to test
-  const journalsOnDate = getjournalsOnDate(12, 2, 2024); 
+  const journalsOnDate = getjournalsOnDate(12, 2, 2024);
   expect(journalsOnDate).toEqual(expect.arrayContaining([journal1, journal2]));
   expect(journalsOnDate).not.toContain(journal3);
 });
@@ -211,7 +221,7 @@ test("hasjournalsOnDate should check if journals exist on a specific date", () =
   const journalExists = hasjournalsOnDate(19, 9, 2023);
   expect(journalExists).toBe(true);
 
-  const journalDoesNotExist = hasjournalsOnDate(12, 9, 2023); 
+  const journalDoesNotExist = hasjournalsOnDate(12, 9, 2023);
   expect(journalDoesNotExist).toBe(false);
 });
 
@@ -220,10 +230,10 @@ test("daysInMonth should return the correct number of days for a given month and
     return new Date(year, month + 1, 0).getDate();
   }
 
-  expect(daysInMonth(2, 2024)).toBe(31); 
+  expect(daysInMonth(2, 2024)).toBe(31);
   expect(daysInMonth(1, 2023)).toBe(28);
   expect(daysInMonth(1, 2024)).toBe(29); // Testing for Leap Year
-  expect(daysInMonth(4, 2024)).toBe(31); 
+  expect(daysInMonth(4, 2024)).toBe(31);
   expect(daysInMonth(6, 2024)).toBe(31);
   expect(daysInMonth(7, 2024)).toBe(31);
 });
