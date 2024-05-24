@@ -35,21 +35,21 @@ export function generateUniqueId() {
   return "_" + Math.random().toString(36).substr(2, 9);
 }
 
-function deletejournal(journalId) {
+export function deletejournal(journalId) {
   storedObjects.journals = storedObjects.journals.filter((journal) => journal.id !== journalId);
   showCalendar(currentMonth, currentYear);
   displayjournals();
 }
 
 // added deletetask, which is the same as deletejournal but for the tasks
-function deletetask(taskId) {
+export function deletetask(taskId) {
   let tasks = getObject("tasks") || [];
   tasks = tasks.filter((task) => task.id !== taskId);
   saveObject("tasks", tasks);
   displaytasks();
 }
 
-function displayjournals() {
+export function displayjournals() {
   journalList.innerHTML = "";
   // for (let i = 0; i < journals.length; i++) { // all journals
   //   let journal = journals[i];
@@ -83,7 +83,7 @@ function displayjournals() {
 }
 
 // added displaytasks, which is the same as displayjournals but for the tasks
-function displaytasks() {
+export function displaytasks() {
   let tasks = getObject("tasks") || [];
   console.log("Retrieved tasks:", tasks);
 
@@ -105,7 +105,7 @@ function displaytasks() {
   }
 }
 
-function generate_year_range(start, end) {
+export function generate_year_range(start, end) {
   let years = "";
   for (let year = start; year <= end; year++) {
     years += "<option value='" + year + "'>" + year + "</option>";
@@ -264,17 +264,17 @@ function createjournalTooltip(date, month, year) {
   return tooltip;
 }
 
-function getjournalsOnDate(date, month, year) {
+export function getjournalsOnDate(date, month, year) {
   return storedObjects.journals.filter(function (journal) {
     let journalDate = new Date(journal.date);
     return journalDate.getDate() === date && journalDate.getMonth() === month && journalDate.getFullYear() === year;
   });
 }
 
-function hasjournalOnDate(date, month, year) {
+export function hasjournalOnDate(date, month, year) {
   return getjournalsOnDate(date, month, year).length > 0;
 }
 
-function daysInMonth(iMonth, iYear) {
+export function daysInMonth(iMonth, iYear) {
   return 32 - new Date(iYear, iMonth, 32).getDate();
 }
