@@ -201,3 +201,16 @@ body {
 #view-tasks {
   margin-right: 10px;
 }
+
+#confirmBox {
+  position: fixed;
+  background: white;
+  width: 300px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
