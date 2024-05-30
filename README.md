@@ -13,3 +13,5 @@ for webstorm, go to preferences and enable format on save
 
 in order to run the application, just run the command ```npm run dev``` rather than
 use live server (to keep things consistent between team members)
+
+documentation
