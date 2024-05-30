@@ -1,8 +1,8 @@
 {
-  "**/*.{js,html,css}": [
+  "src/**/*.{js,html,css}": [
     "npx prettier --write"
   ],
-  "**/*.js": [
+  "src/**/*.js": [
     "npx eslint"
   ]
 }
