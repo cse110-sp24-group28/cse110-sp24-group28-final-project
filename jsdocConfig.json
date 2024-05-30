@@ -1,9 +1,4 @@
 {
-  "templates": {
-    "default": {
-      "includeDate": false
-    }
-  },
   "opts": {
     "destination": "./documentation"
   }
