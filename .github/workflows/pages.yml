@@ -36,7 +36,7 @@ jobs:
           cache: 'npm'
           cache-dependency-path: package-lock.json
       - run: npm ci
-      - run: npm run generate
+      - run: npm run document
       - run: mv documentation src
       - name: Checkout
         uses: actions/checkout@v4
