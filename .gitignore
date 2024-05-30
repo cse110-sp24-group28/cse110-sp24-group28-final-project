@@ -2,5 +2,5 @@
 .idea
 node_modules
 
-# ignore out because it is generated from code
+# ignore documentation because it is generated from code
 documentation
