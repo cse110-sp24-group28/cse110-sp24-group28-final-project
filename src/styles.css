@@ -32,7 +32,6 @@ body {
   color: rgb(0, 23, 128);
   text-align: center;
   margin: 0;
-  padding: 10px 0;
 }
 
 .journal-section h3 {
@@ -213,4 +212,33 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#searchInput {
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  flex: 1;
+}
+
+#searchButton {
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-left: none;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#searchButton:hover {
+  background-color: #0056b3;
 }
