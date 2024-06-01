@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     month: "long", // "July"
     day: "numeric", // "20"
   });
- 
+
   dateHeader.textContent = currentDate;
   document.getElementById("previous").addEventListener("click", previous);
   document.getElementById("next").addEventListener("click", next);
@@ -69,10 +69,9 @@ export function displayjournals() {
   const moodtext = document.getElementById("mood-text");
   moodtext.style.display = "inline-block";
   const moods = document.querySelectorAll(".emoji");
-  moods.forEach(mood => {
+  moods.forEach((mood) => {
     mood.style.display = "inline-block";
-  }); 
-
+  });
 
   for (let i = 0; i < todayList.length; i++) {
     let journal = todayList[i];
@@ -125,7 +124,7 @@ export function displaytasks() {
   const moodtext = document.getElementById("mood-text");
   moodtext.style.display = "none";
   const moods = document.querySelectorAll(".emoji");
-  moods.forEach(mood => {
+  moods.forEach((mood) => {
     mood.style.display = "none";
   });
   let tasks = getObject("tasks") || [];
@@ -275,7 +274,7 @@ function showCalendar(month, year) {
     //change the title of the page to Developer Task List
     const taskList = document.getElementById("taskList");
     const journalList = document.getElementById("journalList");
-    
+
     if (taskList) taskList.style.display = "block";
     if (journalList) journalList.style.display = "none";
   });
@@ -343,8 +342,8 @@ document.addEventListener("DOMContentLoaded", function () {
 function moodTracker(todayMood) {
   let moodButtons = document.querySelectorAll(".emoji");
   //highlight the clicked button
-  moodButtons.forEach(mood => {
-    mood.style.opacity = '0.3';
+  moodButtons.forEach((mood) => {
+    mood.style.opacity = "0.3";
   });
-  todayMood.style.opacity = '1';
+  todayMood.style.opacity = "1";
 }
