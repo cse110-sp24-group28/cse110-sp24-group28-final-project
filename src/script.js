@@ -65,6 +65,15 @@ export function displayjournals() {
   let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
   let todayList = getjournalsOnDate(currentDay, currentMonth, currentYear);
+  //Make emojies visiable in the journal only
+  const moodtext = document.getElementById("mood-text");
+  moodtext.style.display = "inline-block";
+  const moods = document.querySelectorAll(".emoji");
+  moods.forEach(mood => {
+    mood.style.display = "inline-block";
+  }); 
+
+
   for (let i = 0; i < todayList.length; i++) {
     let journal = todayList[i];
     let journalDate = new Date(journal.date);
@@ -112,12 +121,18 @@ function customConfirm(msg, callback) {
 
 // added displaytasks, which is the same as displayjournals but for the tasks
 export function displaytasks() {
+  //Emojis disappear when the task list is displayed
+  const moodtext = document.getElementById("mood-text");
+  moodtext.style.display = "none";
+  const moods = document.querySelectorAll(".emoji");
+  moods.forEach(mood => {
+    mood.style.display = "none";
+  });
   let tasks = getObject("tasks") || [];
   console.log("Retrieved tasks:", tasks);
 
   const taskList = document.getElementById("taskList");
   if (!taskList) return;
-
   taskList.innerHTML = "";
   for (let i = 0; i < tasks.length; i++) {
     let task = tasks[i];
@@ -257,9 +272,10 @@ function showCalendar(month, year) {
     displaytasks();
     document.getElementById("TitleOfPage").textContent = "Developer Task List";
     document.getElementById("dateHeader").textContent = "";
-    //change the title of the page to Developer Tasl
+    //change the title of the page to Developer Task List
     const taskList = document.getElementById("taskList");
     const journalList = document.getElementById("journalList");
+    
     if (taskList) taskList.style.display = "block";
     if (journalList) journalList.style.display = "none";
   });
@@ -312,4 +328,23 @@ export function hasjournalOnDate(date, month, year) {
 
 export function daysInMonth(iMonth, iYear) {
   return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+
+// Mood trackers function
+// when a button is clicked, the clicked button will be highlighted
+document.addEventListener("DOMContentLoaded", function () {
+  let moodButtons = document.querySelectorAll(".emoji");
+  moodButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      moodTracker(button);
+    });
+  });
+});
+function moodTracker(todayMood) {
+  let moodButtons = document.querySelectorAll(".emoji");
+  //highlight the clicked button
+  moodButtons.forEach(mood => {
+    mood.style.opacity = '0.3';
+  });
+  todayMood.style.opacity = '1';
 }
