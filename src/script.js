@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     month: "long", // "July"
     day: "numeric", // "20"
   });
-
+ 
   dateHeader.textContent = currentDate;
   document.getElementById("previous").addEventListener("click", previous);
   document.getElementById("next").addEventListener("click", next);
