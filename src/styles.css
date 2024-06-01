@@ -23,7 +23,7 @@ body {
 .journal-section {
   padding: 10px;
   background: #f5f5f5;
-  margin: 20px 0;
+  margin: 20px auto;
   border: 1px solid #ccc;
   width: 500px;
 }
@@ -42,18 +42,24 @@ body {
 }
 
 .journal-section input[type="date"],
-.journal-section input[type="text"] {
+.journal-section input[type="text"],
+.journal-section textarea {
   margin: 10px 0;
   padding: 5px;
-  width: 80%;
+  width: 100%;
+  max-width: 400px;
 }
 
 .journal-section button {
-  background: rgb(0, 23, 128);
-  color: white;
-  border: none;
+  background: rgba(234, 232, 232, 0.763);
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
   padding: 5px 10px;
   cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .journal-marker {
@@ -96,6 +102,21 @@ body {
   background: #f5f5f5;
   margin: 20px 0;
   border: 1px solid #ccc;
+  align-items: center;
+  max-width: 600px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+form > * {
+  width: 80%;
+  max-width: 500px;
 }
 
 #journal-section h3 {
@@ -115,8 +136,9 @@ body {
   font-size: 16px;
 }
 
-.delete-journal {
-  background: rgb(0, 23, 128);
+.delete-journal, 
+.delete-task{
+  background: #5958588b;;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -155,7 +177,8 @@ body {
   border-bottom: 2px solid currentColor;
 }
 
-.date-picker:hover {
+.date-picker:hover,
+button:hover {
   background-color: rgb(0, 23, 128);
   color: white;
   cursor: pointer;
@@ -214,3 +237,22 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.delete-journal:hover, .delete-task:hover, #close:hover {
+  background: #771010; 
+}
+
+button.clicked, button#journal.clicked, button#task.clicked {
+  background-color: rgb(0, 23, 128);
+  color: white;
+}
+
+/* #saveJournal {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#addTask {
+  margin-top: -10px;
+  margin-bottom: 30px;
+} */

@@ -124,6 +124,7 @@ export function displaytasks() {
     let taskItem = document.createElement("li");
     taskItem.innerHTML = `<strong>${task.title}</strong> - ${task.details} (Due: ${new Date(task.dueDate).toLocaleDateString()})`;
     let deleteButton = document.createElement("button");
+    deleteButton.className = "delete-task";
     deleteButton.textContent = "Delete";
     deleteButton.onclick = function () {
       // deletetask(task.id);

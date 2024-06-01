@@ -7,10 +7,10 @@
     <title>Create Journal</title>
   </head>
   <body>
-    <h1 style="color: rgb(0, 23, 128); font-size: 30px; margin: 0" id="dateHeader">Today</h1>
+    <h1 style="color: rgb(0, 23, 128); font-size: 30px; margin: 0; text-align: center; margin-top: 20px;" id="dateHeader">Today</h1>
     <div class="journal-section">
       <div class="header centered">
-        <button id="close" onclick="window.location.href = 'index.html'">X</button>
+        <button id="close" onclick="window.location.href = 'index.html'">Exit</button>
         <button id="journal">Journal</button>
         <button id="task" onclick="window.location.href = 'task.html'">Task</button>
       </div>
@@ -45,8 +45,27 @@
         console.log("Saved journal:", journal); // Log saved journal
         console.log("All journals:", journals); // Log all journals
 
-        window.location.href = "index.html";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 0);
       });
+
+      const journalButton = document.getElementById("journal");
+        const taskButton = document.getElementById("task");
+        
+        journalButton.classList.add("clicked");
+        taskButton.classList.remove("clicked");
+
+        journalButton.addEventListener("click", () => {
+            journalButton.classList.add("clicked");
+            taskButton.classList.remove("clicked");
+        });
+
+        taskButton.addEventListener("click", () => {
+            taskButton.classList.add("clicked");
+            journalButton.classList.remove("clicked");
+        });
+        
     </script>
   </body>
 </html>
