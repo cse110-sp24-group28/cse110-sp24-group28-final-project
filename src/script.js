@@ -1,7 +1,8 @@
 import { saveObject, getObject, storedObjects } from "./localStorageHelper.js";
+import { handleSearchSubmit } from "./components/search.js";
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
-var dateHeader;
+export let dateHeader;
 // show today's date under Developer Journal
 document.addEventListener("DOMContentLoaded", function () {
   dateHeader = document.getElementById("dateHeader");
@@ -277,15 +278,8 @@ function showCalendar(month, year) {
     if (journalList) journalList.style.display = "block";
     displayjournals();
   });
-  //when search bar button is clicked, journals are filtered based on search input
-  document.getElementById("searchButton").addEventListener("click", function () {
-    let searchResult = document.getElementById("searchInput").value.toLowerCase();
-    dateHeader.textContent = 'Journal results for "' + searchResult + '"';
-    let searchedJournals = storedObjects.journals.filter(function (journal) {
-      return journal.title.toLowerCase().includes(searchResult);
-    });
-    showSearchedJournals(searchedJournals);
-  });
+  //when components bar button is clicked, journals are filtered based on components input
+  document.getElementById("searchBarForm").addEventListener("submit", handleSearchSubmit);
 }
 
 function createjournalTooltip(date, month, year) {
@@ -333,7 +327,7 @@ export function daysInMonth(iMonth, iYear) {
 /**
  * Show Searched Journals
  */
-function showSearchedJournals(searchedJournals) {
+export function showSearchedJournals(searchedJournals) {
   journalList.innerHTML = "";
   for (let i = 0; i < searchedJournals.length; i++) {
     let journal = searchedJournals[i];

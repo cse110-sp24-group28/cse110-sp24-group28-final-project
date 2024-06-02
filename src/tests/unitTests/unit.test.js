@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { add } from "../localStorageHelper.js";
+import { add } from "../../localStorageHelper.js";
 import {
   generateUniqueId,
   deletetask,
@@ -12,7 +12,8 @@ import {
   getjournalsOnDate,
   hasjournalOnDate,
   daysInMonth,
-} from "../script.js";
+} from "../../script.js";
+import { generateTasks } from "./utils.js";
 
 test("add", () => {
   expect(add(3, 4)).toBe(7);
@@ -68,29 +69,14 @@ test("deletejournal should delete a journal", () => {
 test("displaytasks should display tasks", () => {
   document.body.innerHTML = `<ul id="taskList"></ul>`;
 
-  const task1 = {
-    id: generateUniqueId(),
-    title: "Task 1",
-    details: "First task. Reminder, Anirvinna's Birthday.",
-    dueDate: "2025-03-13",
-  };
-
-  const task2 = {
-    id: generateUniqueId(),
-    title: "Task 2",
-    details: "Second task. Reminder, a very special Birthday",
-    dueDate: "2024-07-27",
-  };
-
-  let tasks = [task1, task2];
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  generateTasks();
 
   displaytasks();
 
   const taskList = document.getElementById("taskList");
   expect(taskList.children.length).toBe(2);
-  expect(taskList.innerHTML).toContain(task1.title);
-  expect(taskList.innerHTML).toContain(task2.title);
+  expect(taskList.innerHTML).toContain("Task 1");
+  expect(taskList.innerHTML).toContain("Task 2");
 });
 
 test("displayjournal should display journals", () => {
@@ -142,14 +128,6 @@ test("displayjournal should display journals", () => {
 });
 
 test("generate_year_range should create a range of years", () => {
-  function generate_year_range(start, end) {
-    let years = "";
-    for (let year = start; year <= end; year++) {
-      years += "<option value='" + year + "'>" + year + "</option>";
-    }
-    return years;
-  }
-
   const startYear = 1999;
   const endYear = 2003;
   const expectedOutput =
@@ -226,10 +204,6 @@ test("generate_year_range should create a range of years", () => {
 // });
 
 test("daysInMonth should return the correct number of days for a given month and year", () => {
-  function daysInMonth(month, year) {
-    return new Date(year, month + 1, 0).getDate();
-  }
-
   expect(daysInMonth(2, 2024)).toBe(31);
   expect(daysInMonth(1, 2023)).toBe(28);
   expect(daysInMonth(1, 2024)).toBe(29); // Testing for Leap Year

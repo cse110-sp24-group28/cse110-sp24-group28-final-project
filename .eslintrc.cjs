@@ -10,7 +10,7 @@ module.exports = {
       env: {
         node: true,
       },
-      files: ["{.eslintrc.{js,cjs},src/tests/*.js}"],
+      files: ["{.eslintrc.{js,cjs},src/unitTests/*.js}"],
       parserOptions: {
         sourceType: "module",
       },
