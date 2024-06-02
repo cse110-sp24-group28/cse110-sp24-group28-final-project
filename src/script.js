@@ -69,8 +69,31 @@ export function displayjournals() {
   const moodtext = document.getElementById("mood-text");
   moodtext.style.display = "inline-block";
   const moods = document.querySelectorAll(".emoji");
+  
   moods.forEach((mood) => {
     mood.style.display = "inline-block";
+  });
+  const todayMood = storedObjects.moods.filter((mood) => {
+    let moodDate = new Date(mood.date);
+    return moodDate.getDate() === currentDay && moodDate.getMonth() === currentMonth && moodDate.getFullYear() === currentYear;
+  })[0];
+  console.log(storedObjects.moods);
+  console.log(todayMood);
+
+  let todayDate = new Date();
+  let todayIsSelected = (currentDay === todayDate.getDate() && currentMonth === todayDate.getMonth() && currentYear === todayDate.getFullYear());
+  moods.forEach((mood) => {
+    if (todayMood != undefined) {
+      if (mood.textContent === todayMood.mood) mood.style.opacity = "1";
+      else mood.style.opacity = "0.3";
+    } else if (todayIsSelected) {
+      mood.style.opacity = "1";
+    } else {
+      mood.style.opacity = "0.3";
+    }
+    
+    if (!todayIsSelected) mood.disabled = true; // Can only change the mood for the current day
+    else mood.disabled = false;
   });
 
   for (let i = 0; i < todayList.length; i++) {
@@ -346,4 +369,16 @@ function moodTracker(todayMood) {
     mood.style.opacity = "0.3";
   });
   todayMood.style.opacity = "1";
+
+  let todayDate = new Date();
+  let todayDateStr = todayDate.toISOString();
+  storedObjects.moods = storedObjects.moods.filter((mood) => {
+    let moodDate = new Date(mood.date);
+    return moodDate.getDate() !== todayDate.getDate() && moodDate.getMonth() !== todayDate.getMonth() && moodDate.getFullYear() !== todayDate.getFullYear();
+  });
+
+  const moodObj = {date: todayDateStr, mood: todayMood.textContent};
+  let moods = getObject("moods") ?? [];
+  moods.push(moodObj);
+  storedObjects.moods = moods;
 }
