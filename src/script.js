@@ -79,13 +79,35 @@ export function displayjournals() {
       deleteButton.className = "delete-journal";
       deleteButton.textContent = "Delete";
       deleteButton.onclick = function () {
-        deletejournal(journal.id);
+        // deletejournal(journal.id);
+        customConfirm("Are you sure you want to delete this journal?", function (confirmed) {
+          if (confirmed) {
+            deletejournal(journal.id);
+          } else {
+            console.log("Deletion cancelled.");
+          }
+        });
       };
 
       listItem.appendChild(deleteButton);
       journalList.appendChild(listItem);
     }
   }
+}
+
+function customConfirm(msg, callback) {
+  const confirmBox = document.getElementById("confirmBox");
+  confirmBox.style.display = "block";
+  confirmBox.querySelector("p").textContent = msg;
+
+  confirmBox.querySelector("#confirmOk").onclick = function () {
+    callback(true);
+    confirmBox.style.display = "none";
+  };
+  confirmBox.querySelector("#confirmCancel").onclick = function () {
+    callback(false);
+    confirmBox.style.display = "none";
+  };
 }
 
 // added displaytasks, which is the same as displayjournals but for the tasks
@@ -102,9 +124,17 @@ export function displaytasks() {
     let taskItem = document.createElement("li");
     taskItem.innerHTML = `<strong>${task.title}</strong> - ${task.details} (Due: ${new Date(task.dueDate).toLocaleDateString()})`;
     let deleteButton = document.createElement("button");
+    deleteButton.className = "delete-task";
     deleteButton.textContent = "Delete";
     deleteButton.onclick = function () {
-      deletetask(task.id);
+      // deletetask(task.id);
+      customConfirm("Are you sure you want to delete this task?", function (confirmed) {
+        if (confirmed) {
+          deletetask(task.id);
+        } else {
+          console.log("Deletion cancelled.");
+        }
+      });
     };
     taskItem.appendChild(deleteButton);
     taskList.appendChild(taskItem);
