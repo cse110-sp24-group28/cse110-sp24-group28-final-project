@@ -34,7 +34,6 @@ body {
   color: rgb(0, 23, 128);
   text-align: center;
   margin: 0;
-  padding: 10px 0;
 }
 /* Styles for the subheaders of the journal section */
 .journal-section h3 {
@@ -286,3 +285,36 @@ button#task.clicked {
   margin-top: -10px;
   margin-bottom: 30px;
 } */
+
+/* Styles for the search bar section in the application */
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Styles for the search bar input in the application */
+#searchInput {
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  flex: 1;
+}
+
+/* Styles for the search button in the application */
+#searchButton {
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-left: none;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styles for the search button when it is being hoverd over */
+#searchButton:hover {
+  background-color: #0056b3;
+}
