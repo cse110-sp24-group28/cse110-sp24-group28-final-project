@@ -77,8 +77,6 @@ export function displayjournals() {
     let moodDate = new Date(mood.date);
     return moodDate.getDate() === currentDay && moodDate.getMonth() === currentMonth && moodDate.getFullYear() === currentYear;
   })[0];
-  console.log(storedObjects.moods);
-  console.log(todayMood);
 
   let todayDate = new Date();
   let todayIsSelected = (currentDay === todayDate.getDate() && currentMonth === todayDate.getMonth() && currentYear === todayDate.getFullYear());
