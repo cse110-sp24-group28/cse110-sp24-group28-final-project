@@ -3,7 +3,6 @@
  */
 import { add } from "../../localStorageHelper.js";
 import {
-  generateUniqueId,
   deletetask,
   deletejournal,
   displaytasks,
@@ -14,6 +13,7 @@ import {
   daysInMonth,
 } from "../../script.js";
 import { generateTasks } from "./utils.js";
+import { generateUniqueId } from "../../utils.js";
 
 test("add", () => {
   expect(add(3, 4)).toBe(7);

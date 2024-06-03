@@ -33,13 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- * Generates a unique id
- */
-export function generateUniqueId() {
-  return "_" + Math.random().toString(36).substr(2, 9);
-}
-
-/**
  * Deletes journal
  */
 export function deletejournal(journalId) {

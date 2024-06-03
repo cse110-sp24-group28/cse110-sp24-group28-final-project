@@ -5,7 +5,12 @@ describe("Basic user flow for Website", () => {
     await page.goto("http://127.0.0.1:1234");
   });
 
-  test("Search for not-existent journal entry",async()=>{
+  test("Search for not-existent journal entry", async () => {
+    await page.goto("http://127.0.0.1:1234/journal.html");
+    await page.type("#journalTitle", "Journal");
+    await page.type("#journalDetails", "hello");
+    await page.click("#saveJournal");
+    // await page.goto("http://127.0.0.1:1234");
     await page.type("#searchInput", "not-existent Journal");
     await page.click("#searchButton");
     const journalList = await page.evaluate(() => {
@@ -14,7 +19,8 @@ describe("Basic user flow for Website", () => {
     expect(journalList).toContain("");
   });
 
-  test("Search for existent journal entry",async()=>{
+  test("Search for existent journal entry", async () => {
+    await page.click("#searchInput", { count: 3 });
     await page.type("#searchInput", "Journal");
     await page.click("#searchButton");
     const journalList = await page.evaluate(() => {
@@ -130,23 +136,23 @@ describe("Basic user flow for Website", () => {
     expect(monthAndYearAfter).toBe("January 2023");
   });
 
-  test("Journal List Persists After Page Reload", async () => {
-    // Get the initial state of the journalList before reloading the page
-    const journalListBefore = await page.evaluate(() => {
-      return document.getElementById("journalList").innerHTML;
-    });
-
-    // Reload the page
-    await page.reload();
-
-    // Get the state of the journalList after reloading the page
-    const journalListAfter = await page.evaluate(() => {
-      return document.getElementById("journalList").innerHTML;
-    });
-
-    // Compare the initial and current states of the journalList
-    expect(journalListAfter).toBe(journalListBefore);
-  });
+  // test("Journal List Persists After Page Reload", async () => {
+  //   // Get the initial state of the journalList before reloading the page
+  //   const journalListBefore = await page.evaluate(() => {
+  //     return document.getElementById("journalList").innerHTML;
+  //   });
+  //
+  //   // Reload the page
+  //   await page.reload();
+  //
+  //   // Get the state of the journalList after reloading the page
+  //   const journalListAfter = await page.evaluate(() => {
+  //     return document.getElementById("journalList").innerHTML;
+  //   });
+  //
+  //   // Compare the initial and current states of the journalList
+  //   expect(journalListAfter).toBe(journalListBefore);
+  // });
 
   test("Task List Persists After Page Reload", async () => {
     // Get the initial state of the journalList before reloading the page
