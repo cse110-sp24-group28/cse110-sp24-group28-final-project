@@ -136,24 +136,6 @@ describe("Basic user flow for Website", () => {
     expect(monthAndYearAfter).toBe("January 2023");
   });
 
-  // test("Journal List Persists After Page Reload", async () => {
-  //   // Get the initial state of the journalList before reloading the page
-  //   const journalListBefore = await page.evaluate(() => {
-  //     return document.getElementById("journalList").innerHTML;
-  //   });
-  //
-  //   // Reload the page
-  //   await page.reload();
-  //
-  //   // Get the state of the journalList after reloading the page
-  //   const journalListAfter = await page.evaluate(() => {
-  //     return document.getElementById("journalList").innerHTML;
-  //   });
-  //
-  //   // Compare the initial and current states of the journalList
-  //   expect(journalListAfter).toBe(journalListBefore);
-  // });
-
   test("Task List Persists After Page Reload", async () => {
     // Get the initial state of the journalList before reloading the page
     const taskListBefore = await page.evaluate(() => {
@@ -178,19 +160,4 @@ describe("Basic user flow for Website", () => {
     const url = page.url();
     expect(url).toContain("journal.html");
   });
-
-  // works locally
-  // test("Click 'Task' button and navigate to task.html", async () => {
-  //   await page.click("#task");
-
-  //   const url1 = page.url();
-  //   expect(url1).toContain("task.html");
-  // });
-
-  // test("Click 'Journal' button and navigate to journal.html", async () => {
-  //   await page.click("#journalReturn");
-
-  //   const url2 = page.url();
-  //   expect(url2).toContain("journal.html");
-  // });
 });
