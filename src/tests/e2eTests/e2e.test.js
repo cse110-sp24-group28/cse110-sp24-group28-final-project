@@ -5,6 +5,24 @@ describe("Basic user flow for Website", () => {
     await page.goto("http://127.0.0.1:1234");
   });
 
+  test("Search for not-existent journal entry",async()=>{
+    await page.type("#searchInput", "not-existent Journal");
+    await page.click("#searchButton");
+    const journalList = await page.evaluate(() => {
+      return document.getElementById("journalList").innerHTML;
+    });
+    expect(journalList).toContain("");
+  });
+
+  test("Search for existent journal entry",async()=>{
+    await page.type("#searchInput", "Journal");
+    await page.click("#searchButton");
+    const journalList = await page.evaluate(() => {
+      return document.getElementById("journalList").innerHTML;
+    });
+    expect(journalList).toContain("Journal");
+  });
+
   test("Navigating to Previous Month", async () => {
     // Get the current month and year before clicking "Previous"
     const monthAndYearBefore = await page.evaluate(() => {
