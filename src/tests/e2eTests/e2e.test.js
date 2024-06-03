@@ -11,7 +11,7 @@ describe("Basic user flow for Website", () => {
     await page.type("#journalDetails", "hello");
     await page.click("#saveJournal");
     // await page.goto("http://127.0.0.1:1234");
-    await page.type("#searchInput", "not-existent Journal");
+    await page.type("#searchInput", "not-existent");
     await page.click("#searchButton");
     const journalList = await page.evaluate(() => {
       return document.getElementById("journalList").innerHTML;
