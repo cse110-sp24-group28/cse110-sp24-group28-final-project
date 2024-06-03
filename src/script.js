@@ -1,7 +1,8 @@
 import { saveObject, getObject, storedObjects } from "./localStorageHelper.js";
+import { handleSearchSubmit } from "./components/search.js";
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
-var dateHeader;
+export let dateHeader;
 // show today's date under Developer Journal
 document.addEventListener("DOMContentLoaded", function () {
   dateHeader = document.getElementById("dateHeader");
@@ -57,9 +58,6 @@ export function deletetask(taskId) {
 
 export function displayjournals() {
   journalList.innerHTML = "";
-  // for (let i = 0; i < journals.length; i++) { // all journals
-  //   let journal = journals[i];
-  // let todayList = getjournalsOnDate(today.getDate(), currentMonth, currentYear); // show today's journals
   let currentDate = new Date(dateHeader.textContent);
   let currentDay = currentDate.getDate();
   let currentMonth = currentDate.getMonth();
@@ -280,6 +278,8 @@ function showCalendar(month, year) {
     if (journalList) journalList.style.display = "block";
     displayjournals();
   });
+  //when components bar button is clicked, journals are filtered based on components input
+  document.getElementById("searchBarForm").addEventListener("submit", handleSearchSubmit);
 }
 
 function createjournalTooltip(date, month, year) {
@@ -300,6 +300,9 @@ function createjournalTooltip(date, month, year) {
   return tooltip;
 }
 
+/**
+ * Get journal On Date
+ */
 export function getjournalsOnDate(date, month, year) {
   return storedObjects.journals.filter(function (journal) {
     let journalDate = new Date(journal.date);
@@ -307,10 +310,47 @@ export function getjournalsOnDate(date, month, year) {
   });
 }
 
+/**
+ * Check has journal On Date
+ */
 export function hasjournalOnDate(date, month, year) {
   return getjournalsOnDate(date, month, year).length > 0;
 }
 
+/**
+ * Show Searched Journals
+ */
 export function daysInMonth(iMonth, iYear) {
   return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+
+/**
+ * Show Searched Journals
+ */
+export function showSearchedJournals(searchedJournals) {
+  journalList.innerHTML = "";
+  for (let i = 0; i < searchedJournals.length; i++) {
+    let journal = searchedJournals[i];
+    let journalDate = new Date(journal.date);
+    let listItem = document.createElement("li");
+    listItem.innerHTML = `<strong>${journal.title}</strong> - 
+            ${journal.description} on 
+            ${journalDate.toLocaleDateString()}`;
+
+    let deleteButton = document.createElement("button");
+    deleteButton.className = "delete-journal";
+    deleteButton.textContent = "Delete";
+    deleteButton.onclick = function () {
+      customConfirm("Are you sure you want to delete this journal?", function (confirmed) {
+        if (confirmed) {
+          deletejournal(journal.id);
+        } else {
+          console.log("Deletion cancelled.");
+        }
+      });
+    };
+
+    listItem.appendChild(deleteButton);
+    journalList.append(listItem);
+  }
 }

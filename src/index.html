@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles.css" />
     <title>Developer Journal</title>
   </head>
@@ -43,6 +44,14 @@
           </div>
         </div>
         <div id="left">
+          <form id="searchBarForm">
+            <div class="search-bar">
+              <input type="text" id="searchInput" placeholder="Search Journals by name ..." />
+              <button type="submit" id="searchButton">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </form>
           <h1 id="TitleOfPage">Developer Journal</h1>
           <div class="journal-section">
             <h3 id="dateHeader">Today</h3>
