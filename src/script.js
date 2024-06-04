@@ -141,12 +141,12 @@ function customConfirm(msg, callback) {
 // added displaytasks, which is the same as displayjournals but for the tasks
 export function displaytasks() {
   //Emojis disappear when the task list is displayed
-  const moodtext = document.getElementById("mood-text");
-  moodtext.style.display = "none";
-  const moods = document.querySelectorAll(".emoji");
-  moods.forEach((mood) => {
-    mood.style.display = "none";
-  });
+  // const moodtext = document.getElementById("mood-text");
+  // moodtext.style.display = "none";
+  // const moods = document.querySelectorAll(".emoji");
+  // moods.forEach((mood) => {
+  //   mood.style.display = "none";
+  // });
   let tasks = getObject("tasks") || [];
   console.log("Retrieved tasks:", tasks);
 
@@ -296,7 +296,16 @@ function showCalendar(month, year) {
     //change the title of the page to Developer Tasl
     const taskList = document.getElementById("taskList");
     const journalList = document.getElementById("journalList");
-    if (taskList) taskList.style.display = "block";
+    if (taskList) {
+      taskList.style.display = "block";
+      //Emojis disappear when the task list is displayed
+      const moodtext = document.getElementById("mood-text");
+      moodtext.style.display = "none";
+      const moods = document.querySelectorAll(".emoji");
+      moods.forEach((mood) => {
+        mood.style.display = "none";
+      });
+    }
     if (journalList) journalList.style.display = "none";
   });
   document.getElementById("view-journals").addEventListener("click", function () {
