@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Load and display journals
   displayjournals();
 
-  // // Load and display tasks
+  // Load and display tasks
   // displaytasks();
 });
 
@@ -56,6 +56,7 @@ export function deletetask(taskId) {
   displaytasks();
 }
 
+
 export function displayjournals() {
   journalList.innerHTML = "";
   let currentDate = new Date(dateHeader.textContent);
@@ -71,6 +72,7 @@ export function displayjournals() {
   moods.forEach((mood) => {
     mood.style.display = "inline-block";
   });
+  
   const todayMood = storedObjects.moods.filter((mood) => {
     let moodDate = new Date(mood.date);
     return moodDate.getDate() === currentDay && moodDate.getMonth() === currentMonth && moodDate.getFullYear() === currentYear;
@@ -140,13 +142,7 @@ function customConfirm(msg, callback) {
 
 // added displaytasks, which is the same as displayjournals but for the tasks
 export function displaytasks() {
-  //Emojis disappear when the task list is displayed
-  // const moodtext = document.getElementById("mood-text");
-  // moodtext.style.display = "none";
-  // const moods = document.querySelectorAll(".emoji");
-  // moods.forEach((mood) => {
-  //   mood.style.display = "none";
-  // });
+ 
   let tasks = getObject("tasks") || [];
   console.log("Retrieved tasks:", tasks);
 
@@ -305,6 +301,7 @@ function showCalendar(month, year) {
       moods.forEach((mood) => {
         mood.style.display = "none";
       });
+      
     }
     if (journalList) journalList.style.display = "none";
   });
