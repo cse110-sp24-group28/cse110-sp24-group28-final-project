@@ -63,6 +63,36 @@ export function displayjournals() {
   let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
   let todayList = getjournalsOnDate(currentDay, currentMonth, currentYear);
+  //Make emojies visiable in the journal only
+  const moodtext = document.getElementById("mood-text");
+  moodtext.style.display = "inline-block";
+  const moods = document.querySelectorAll(".emoji");
+
+  moods.forEach((mood) => {
+    mood.style.display = "inline-block";
+  });
+  const todayMood = storedObjects.moods.filter((mood) => {
+    let moodDate = new Date(mood.date);
+    return moodDate.getDate() === currentDay && moodDate.getMonth() === currentMonth && moodDate.getFullYear() === currentYear;
+  })[0];
+
+  let todayDate = new Date();
+  let todayIsSelected =
+    currentDay === todayDate.getDate() && currentMonth === todayDate.getMonth() && currentYear === todayDate.getFullYear();
+  moods.forEach((mood) => {
+    if (todayMood != undefined) {
+      if (mood.textContent === todayMood.mood) mood.style.opacity = "1";
+      else mood.style.opacity = "0.3";
+    } else if (todayIsSelected) {
+      mood.style.opacity = "1";
+    } else {
+      mood.style.opacity = "0.3";
+    }
+
+    if (!todayIsSelected)
+      mood.disabled = true; // Can only change the mood for the current day
+    else mood.disabled = false;
+  });
   for (let i = 0; i < todayList.length; i++) {
     let journal = todayList[i];
     let journalDate = new Date(journal.date);
@@ -110,6 +140,13 @@ function customConfirm(msg, callback) {
 
 // added displaytasks, which is the same as displayjournals but for the tasks
 export function displaytasks() {
+  //Emojis disappear when the task list is displayed
+  // const moodtext = document.getElementById("mood-text");
+  // moodtext.style.display = "none";
+  // const moods = document.querySelectorAll(".emoji");
+  // moods.forEach((mood) => {
+  //   mood.style.display = "none";
+  // });
   let tasks = getObject("tasks") || [];
   console.log("Retrieved tasks:", tasks);
 
@@ -259,7 +296,16 @@ function showCalendar(month, year) {
     //change the title of the page to Developer Tasl
     const taskList = document.getElementById("taskList");
     const journalList = document.getElementById("journalList");
-    if (taskList) taskList.style.display = "block";
+    if (taskList) {
+      taskList.style.display = "block";
+      //Emojis disappear when the task list is displayed
+      const moodtext = document.getElementById("mood-text");
+      moodtext.style.display = "none";
+      const moods = document.querySelectorAll(".emoji");
+      moods.forEach((mood) => {
+        mood.style.display = "none";
+      });
+    }
     if (journalList) journalList.style.display = "none";
   });
   document.getElementById("view-journals").addEventListener("click", function () {
@@ -353,4 +399,39 @@ export function showSearchedJournals(searchedJournals) {
     listItem.appendChild(deleteButton);
     journalList.append(listItem);
   }
+}
+
+// Mood trackers function
+// when a button is clicked, the clicked button will be highlighted
+document.addEventListener("DOMContentLoaded", function () {
+  let moodButtons = document.querySelectorAll(".emoji");
+  moodButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      moodTracker(button);
+    });
+  });
+});
+function moodTracker(todayMood) {
+  let moodButtons = document.querySelectorAll(".emoji");
+  //highlight the clicked button
+  moodButtons.forEach((mood) => {
+    mood.style.opacity = "0.3";
+  });
+  todayMood.style.opacity = "1";
+
+  let todayDate = new Date();
+  let todayDateStr = todayDate.toISOString();
+  storedObjects.moods = storedObjects.moods.filter((mood) => {
+    let moodDate = new Date(mood.date);
+    return (
+      moodDate.getDate() !== todayDate.getDate() &&
+      moodDate.getMonth() !== todayDate.getMonth() &&
+      moodDate.getFullYear() !== todayDate.getFullYear()
+    );
+  });
+
+  const moodObj = { date: todayDateStr, mood: todayMood.textContent };
+  let moods = getObject("moods") ?? [];
+  moods.push(moodObj);
+  storedObjects.moods = moods;
 }
