@@ -11,7 +11,6 @@ describe("Basic user flow for Website", () => {
     await page.type("#journalDetails", "hello");
     await page.click("#saveJournal");
     // await page.goto("http://127.0.0.1:1234");
-    await page.waitForSelector("#searchInput");
     await page.type("#searchInput", "not-existent");
     await page.click("#searchButton");
     const journalList = await page.evaluate(() => {
@@ -161,69 +160,97 @@ describe("Basic user flow for Website", () => {
     const url = page.url();
     expect(url).toContain("journal.html");
   });
-
+    
   test("Mood of the Day selection persists after reload", async () => {
     // Start on the homepage
     await page.goto("http://127.0.0.1:1234");
-
+  
     // Wait for the emoji elements to be available
     await page.waitForSelector(".emoji");
-
+  
     // Click the very happy emoji
     const veryHappyEmoji = await page.$("#veryHappyEmoji");
     await veryHappyEmoji.click();
-
+    
     // Reload the page
     await page.reload();
-
+  
     // Wait for the emoji elements to be available again
     await page.waitForSelector(".emoji");
-
+  
     // Check if the very happy emoji is still selected (assuming selection affects opacity)
     const veryHappyEmojiAfterReload = await page.$("#veryHappyEmoji");
-    const opacity = await page.evaluate((emoji) => emoji.style.opacity, veryHappyEmojiAfterReload);
+    const opacity = await page.evaluate(emoji => emoji.style.opacity, veryHappyEmojiAfterReload);
     expect(opacity).toBe("1"); // Assuming that the selected emoji has an opacity of "1"
   });
 
   test("Navigation to home screen after choosing to exit from journal creation", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
-
+    
     // Click the save button
     await page.click("#close");
-
+    
     // Check if we are back on the home screen
     const url = page.url();
     expect(url).toBe("http://127.0.0.1:1234/index.html");
-  });
-
+  }); 
+  
   test("Navigation to home screen after creating journal", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
-
+  
     // Fill in the journal form
     await page.type("#journalTitle", "Test Journal");
     await page.type("#journalDetails", "Journal entry for testing purposes.");
-
+  
     // Click the save button
     await page.click("#saveJournal");
-
+    
     // Check if we are back on the home screen
     const url = page.url();
     expect(url).toBe("http://127.0.0.1:1234/index.html");
-  });
+  }); 
+
 
   test("Navigation to home screen after choosing to exit from Task creation", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
+  
     // Click the task button to go to the task creation page
     await page.click("#task");
+    
+    await page.waitForSelector("#close");
 
     // Click the close button to exit task creation
     await page.click("#close");
-
+  
     // Check if we are back on the home screen
     const url = page.url();
     expect(url).toBe("http://127.0.0.1:1234/index.html");
   });
+
+  test("Navigation to home screen after creating task", async () => {
+    // Navigate to the journal creation page
+    await page.goto("http://127.0.0.1:1234/journal.html");
+
+    // Navigate to the task creation page
+    await page.click("#task");
+    
+    // Fill in the task form
+    await page.type("#taskTitle", "Test Task");
+    await page.type("#taskDetails", "Task entry for testing purposes.");
+  
+    // Set the due date using JavaScript to ensure it's correctly set
+    await page.evaluate(() => {
+      document.querySelector("#dueDate").value = "2024-06-10";
+    });
+  
+    // Click the save button
+    await page.click("#addTask");
+  
+    // Check if we are back on the home screen
+    const url = page.url();
+    expect(url).toBe("http://127.0.0.1:1234/index.html");
+  });  
 });
