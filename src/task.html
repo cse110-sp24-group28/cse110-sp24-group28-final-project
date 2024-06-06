@@ -30,7 +30,7 @@
       // defined each component of user input from task form after the form is submitted
       // adds new task to array of preexisting tasks
       import { saveObject, getObject } from "./localStorageHelper.js";
-      import { generateUniqueId } from "./script.js";
+      import { generateUniqueId } from "./utils.js";
 
       document.getElementById("taskForm").addEventListener("submit", function () {
         const title = document.getElementById("taskTitle").value;
