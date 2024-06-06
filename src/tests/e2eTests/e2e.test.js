@@ -239,7 +239,7 @@ describe("Basic user flow for Website", () => {
     await page.waitForSelector("#taskTitle");
     await page.waitForSelector("#taskDetails");
     await page.waitForSelector("#dueDate");
-    
+
     // Fill in the task form
     await page.type("#taskTitle", "Test Task");
     await page.type("#taskDetails", "Task entry for testing purposes.");
