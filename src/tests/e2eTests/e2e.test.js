@@ -236,6 +236,10 @@ describe("Basic user flow for Website", () => {
     // Navigate to the task creation page
     await page.click("#task");
 
+    await page.waitForSelector("#taskTitle");
+    await page.waitForSelector("#taskDetails");
+    await page.waitForSelector("#dueDate");
+    
     // Fill in the task form
     await page.type("#taskTitle", "Test Task");
     await page.type("#taskDetails", "Task entry for testing purposes.");
@@ -245,6 +249,7 @@ describe("Basic user flow for Website", () => {
       document.querySelector("#dueDate").value = "2024-06-10";
     });
 
+    await page.waitForSelector("#addTask");
     // Click the save button
     await page.click("#addTask");
 
