@@ -4,6 +4,9 @@
 import { generateJournals } from "./utils.js";
 import { search } from "../../components/search.js";
 
+/**
+ * Test search journal functionality
+ */
 test("test search journal functionality", () => {
   generateJournals();
   expect(search("very").length).toBe(1);

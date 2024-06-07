@@ -2,8 +2,9 @@ import { storedObjects } from "../localStorageHelper.js";
 import { dateHeader, showSearchedJournals } from "../script.js";
 
 /**
- * handles the case when the user presses the search button or the form is submitted
+ * Handles the case when the user presses the search button or the form is submitted
  * @param {SubmitEvent} e
+ * @returns {void}
  */
 export const handleSearchSubmit = (e) => {
   //Emojis disappear when the task list is displayed
@@ -21,9 +22,10 @@ export const handleSearchSubmit = (e) => {
 };
 
 /**
+ * Finds the journals based on the given search term.
  *
- * @param searchTerm
- * @return journal[]
+ * @param {string} searchTerm - The key search term.
+ * @return {Array} An array of journals that match the search term.
  */
 export const search = (searchTerm) => {
   return storedObjects.journals.filter(function (journal) {

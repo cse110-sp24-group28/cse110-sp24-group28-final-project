@@ -15,10 +15,16 @@ import {
 import { generateTasks } from "./utils.js";
 import { generateUniqueId } from "../../utils.js";
 
+/**
+ * Test add function
+ */
 test("add", () => {
   expect(add(3, 4)).toBe(7);
 });
 
+/**
+ * Test generateUniqueId function generates a unique ID
+ */
 test("generateUniqueId() generates a unique ID", () => {
   // Generate two unique IDs and ensure they are different
   const id1 = generateUniqueId();
@@ -26,7 +32,11 @@ test("generateUniqueId() generates a unique ID", () => {
   expect(id1).not.toBe(id2);
 });
 
+/**
+ * Test delete task
+ */
 test("deletetask should delete a task", () => {
+  // Create a task to delete
   const task = {
     id: generateUniqueId(),
     title: "Task to delete",
@@ -34,15 +44,20 @@ test("deletetask should delete a task", () => {
     dueDate: "2025-03-13",
   };
 
+  // Add the task to local storage
   let tasks = [task];
   localStorage.setItem("tasks", JSON.stringify(tasks));
 
   deletetask(task.id);
 
+  // Verify that the task was deleted
   const updatedTasks = JSON.parse(localStorage.getItem("tasks"));
   expect(updatedTasks).not.toContainEqual(task);
 });
 
+/**
+ * Test delete journal
+ */
 test("deletejournal should delete a journal", () => {
   function deletejournal(journalId) {
     let journals = JSON.parse(localStorage.getItem("journals")) || [];
@@ -50,6 +65,7 @@ test("deletejournal should delete a journal", () => {
     localStorage.setItem("journals", JSON.stringify(journals));
   }
 
+  // Create a journal to delete
   const journal = {
     id: generateUniqueId(),
     title: "Journal to delete",
@@ -57,15 +73,20 @@ test("deletejournal should delete a journal", () => {
     date: "2024-05-23",
   };
 
+  // Add the journal to local storage
   let journals = [journal];
   localStorage.setItem("journals", JSON.stringify(journals));
 
   deletejournal(journal.id);
 
+  // Verify that the journal was deleted
   const updatedJournals = JSON.parse(localStorage.getItem("journals"));
   expect(updatedJournals).not.toContainEqual(journal);
 });
 
+/**
+ * Test display tasks
+ */
 test("displaytasks should display tasks", () => {
   document.body.innerHTML = `<ul id="taskList"></ul>`;
 
@@ -73,12 +94,16 @@ test("displaytasks should display tasks", () => {
 
   displaytasks();
 
+  // Check if the task list contains the expected tasks
   const taskList = document.getElementById("taskList");
   expect(taskList.children.length).toBe(2);
   expect(taskList.innerHTML).toContain("Task 1");
   expect(taskList.innerHTML).toContain("Task 2");
 });
 
+/**
+ * Test display journals
+ */
 test("displayjournal should display journals", () => {
   function displayjournal() {
     let journals = JSON.parse(localStorage.getItem("journals")) || [];
@@ -127,6 +152,9 @@ test("displayjournal should display journals", () => {
   expect(journalList.innerHTML).toContain(journal2.title);
 });
 
+/**
+ * Test generate_year_range
+ */
 test("generate_year_range should create a range of years", () => {
   const startYear = 1999;
   const endYear = 2003;
@@ -135,74 +163,10 @@ test("generate_year_range should create a range of years", () => {
 
   expect(generate_year_range(startYear, endYear)).toBe(expectedOutput);
 });
-// works in local
-// test("getjournalsOnDate should retrieve journals on a specific date", () => {
-//   function getjournalsOnDate(date, month, year) {
-//     return (JSON.parse(localStorage.getItem("journals")) || []).filter(function (journal) {
-//       let journalDate = new Date(journal.date);
-//       return journalDate.getDate() === date && journalDate.getMonth() === month && journalDate.getFullYear() === year;
-//     });
-//   }
 
-//   const journal1 = {
-//     id: generateUniqueId(),
-//     title: "Journal 1",
-//     description: "Very special birthday!",
-//     date: "2024-03-13",
-//   };
-
-//   const journal2 = {
-//     id: generateUniqueId(),
-//     title: "Journal 2",
-//     description: "Finally 21",
-//     date: "2024-03-13",
-//   };
-
-//   const journal3 = {
-//     id: generateUniqueId(),
-//     title: "Journal 3",
-//     description: "Pi Day",
-//     date: "2025-03-14",
-//   };
-
-//   let journals = [journal1, journal2, journal3];
-//   localStorage.setItem("journals", JSON.stringify(journals));
-
-//   // Months and Dates are follow 0 indexing, so we are inputting value-1 to test
-//   const journalsOnDate = getjournalsOnDate(12, 2, 2024);
-//   expect(journalsOnDate).toEqual(expect.arrayContaining([journal1, journal2]));
-//   expect(journalsOnDate).not.toContain(journal3);
-// });
-
-// test("hasjournalsOnDate should check if journals exist on a specific date", () => {
-//   function getjournalsOnDate(date, month, year) {
-//     return (JSON.parse(localStorage.getItem("journals")) || []).filter(function (journal) {
-//       let journalDate = new Date(journal.date);
-//       return journalDate.getDate() === date && journalDate.getMonth() === month && journalDate.getFullYear() === year;
-//     });
-//   }
-
-//   function hasjournalsOnDate(date, month, year) {
-//     return getjournalsOnDate(date, month, year).length > 0;
-//   }
-
-//   const journal = {
-//     id: generateUniqueId(),
-//     title: "Journal",
-//     description: "First day on the journey. Let's see where this goes.",
-//     date: "2023-10-20",
-//   };
-
-//   let journals = [journal];
-//   localStorage.setItem("journals", JSON.stringify(journals));
-
-//   const journalExists = hasjournalsOnDate(19, 9, 2023);
-//   expect(journalExists).toBe(true);
-
-//   const journalDoesNotExist = hasjournalsOnDate(12, 9, 2023);
-//   expect(journalDoesNotExist).toBe(false);
-// });
-
+/**
+ * Test daysInMonth should return the correct number of days for a given month and year
+ */
 test("daysInMonth should return the correct number of days for a given month and year", () => {
   expect(daysInMonth(2, 2024)).toBe(31);
   expect(daysInMonth(1, 2023)).toBe(28);
