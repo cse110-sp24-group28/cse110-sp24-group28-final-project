@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js src/tests",
-    "e2etest": "jest src/e2eTests",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js src/tests/unitTests",
+    "e2etest": "jest src/tests/e2eTests --maxWorkers=1",
     "format": "npx prettier --write 'src/**/*.{js,html,css}'",
     "format-check": "npx prettier --check 'src/**/*.{js,html,css}'",
     "prepare": "husky",
@@ -34,6 +34,7 @@
   },
   "jest": {
     "preset": "jest-puppeteer",
-    "verbose": true
+    "verbose": true,
+    "testTimeout": 15000
   }
 }

@@ -1,14 +1,16 @@
+/* Default Styles for the overall body of any page */
 body {
   font-family: Arial, sans-serif;
   background-color: white;
   margin: 0;
 }
 
+/* Default styles for the wrapper class of the application */
 .wrapper {
   max-width: 1100px;
   margin: 15px auto;
 }
-
+/* Styles for the calendar section of the application */
 .container-calendar {
   background: #ffffff;
   padding: 15px;
@@ -18,48 +20,59 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 }
-
+/* Styles for the journal section of the application */
 .journal-section {
   padding: 10px;
   background: #f5f5f5;
-  margin: 20px 0;
+  margin: 20px auto;
   border: 1px solid #ccc;
   width: 500px;
+  @media (max-width: 768px) {
+    width: unset;
+  }
 }
-
+/* Styles for the title header of the calendar section of the application */
 .container-calendar #left h1 {
   color: rgb(0, 23, 128);
   text-align: center;
   margin: 0;
-  padding: 10px 0;
 }
-
+/* Styles for the subheaders of the journal section */
 .journal-section h3 {
   color: rgb(0, 23, 128);
   font-size: 18px;
   margin: 0;
 }
-
+/* Styles for the input sections in the journal parts of the application */
 .journal-section input[type="date"],
-.journal-section input[type="text"] {
+.journal-section input[type="text"],
+.journal-section textarea {
   margin: 10px 0;
   padding: 5px;
-  width: 80%;
+  width: 100%;
+  max-width: 400px;
 }
-
+/* Styles for the buttons in the journal section of the application */
 .journal-section button {
-  background: rgb(0, 23, 128);
-  color: white;
-  border: none;
+  background: rgba(234, 232, 232, 0.763);
+  color: black;
+  border: 1px solid black;
+  border-radius: 4px;
   padding: 5px 10px;
   cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
+/* Styles for the journal marker in the application */
 .journal-marker {
   position: relative;
 }
-
+/* Styles for the journal section of the code when in the after state */
 .journal-marker::after {
   content: "";
   display: block;
@@ -71,7 +84,7 @@ body {
   bottom: 0;
   left: 0;
 }
-
+/* Styles for the tool tip of the journal section */
 .journal-tooltip {
   position: absolute;
   background-color: rgba(234, 232, 232, 0.763);
@@ -87,17 +100,41 @@ body {
   z-index: 1;
 }
 
+/* Styles when the journal marker is hovered over */
 .journal-marker:hover .journal-tooltip {
   display: block;
 }
 
+/* Styles for the jounral section overall */
 #journal-section {
   padding: 10px;
   background: #f5f5f5;
   margin: 20px 0;
   border: 1px solid #ccc;
+  align-items: center;
+  max-width: 600px;
+  justify-content: start;
+  align-items: center;
 }
 
+/* Default Styles for the form sections of the page */
+#journalForm,
+#taskForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Default styles for all parts in the form section */
+#journalForm > *,
+#taskForm > * {
+  width: 80%;
+  max-width: 500px;
+}
+
+/* Styles for the subheaders in the journal section of the application */
 #journal-section h3 {
   color: rgb(0, 23, 128);
   text-align: center;
@@ -105,18 +142,22 @@ body {
   margin: 0;
 }
 
+/* Styles for the list of items in the journal section of the application */
 #journalList {
   list-style: none;
   padding: 0;
 }
 
+/* Styles for each item in the list of journals in the journal section of the application */
 #journalList li {
   margin: 5px 0;
   font-size: 16px;
 }
 
-.delete-journal {
-  background: rgb(0, 23, 128);
+/* Styles when the user wants to delete a jorunal in the journal section of the application */
+.delete-journal,
+.delete-task {
+  background: #5958588b;
   color: white;
   border: none;
   padding: 5px 10px;
@@ -125,6 +166,7 @@ body {
   align-items: right;
 }
 
+/* Styles for the buttons in the calendar part of the application */
 .button-container-calendar button {
   cursor: pointer;
   color: black;
@@ -132,11 +174,13 @@ body {
   padding: 5px 10px;
 }
 
+/* Styles for the calendar as a table in the application */
 .table-calendar {
   border-collapse: collapse;
   width: 100%;
 }
 
+/* Styles for each item in the calendar table of the application */
 .table-calendar td,
 .table-calendar th {
   padding: 5px;
@@ -145,27 +189,33 @@ body {
   vertical-align: top;
 }
 
+/* Styles for the date picker in the calendar section of the application */
 .date-picker.selected {
   background-color: #f2f2f2;
   font-weight: bold;
   outline: 1px dashed rgb(0, 23, 128);
 }
 
+/* Styles for the selected span of the date picker in the application */
 .date-picker.selected span {
   border-bottom: 2px solid currentColor;
 }
 
-.date-picker:hover {
+/* Styles for the date picker when it is being hoverd over */
+.date-picker:hover,
+button:hover {
   background-color: rgb(0, 23, 128);
   color: white;
   cursor: pointer;
 }
 
+/* Styles for the month and year section of the calendar section of the application */
 #monthAndYear {
   text-align: center;
   margin-top: 0;
 }
 
+/* Default Styles for the buttons in the calendar section of the application */
 .button-container-calendar {
   position: relative;
   margin-bottom: 1em;
@@ -173,20 +223,24 @@ body {
   clear: both;
 }
 
+/* Styles for when the user wants to go to the previous date */
 #previous {
   float: left;
 }
 
+/* Styles for when the user wants to go to the next date */
 #next {
   float: right;
 }
 
+/* Styles for the footer of the calendar section of the application */
 .footer-container-calendar {
   margin-top: 1em;
   border-top: 1px solid #dadada;
   padding: 10px 0;
 }
 
+/* Styles when the user is selecting an item in the footer of the calendar section of the application */
 .footer-container-calendar select {
   cursor: pointer;
   background: #ffffff;
@@ -196,8 +250,111 @@ body {
   padding: 5px 1em;
 }
 
+/* Styles for the create, view journal and view tasks buttons on the main page of the application */
 #create,
 #view-journals,
 #view-tasks {
   margin-right: 10px;
+}
+
+/* Styles for the confirm box on the main page of the application */
+#confirmBox {
+  position: fixed;
+  background: white;
+  width: 300px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Styles for the delete journal and delete task button in the application */
+.delete-journal:hover,
+.delete-task:hover,
+#close:hover {
+  background: #771010;
+}
+
+/* Styles for when a button to create a task or journal or a general button is clicked */
+button.clicked,
+button#journal.clicked,
+button#task.clicked {
+  background-color: rgb(0, 23, 128);
+  color: white;
+}
+
+/* #saveJournal {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#addTask {
+  margin-top: -10px;
+  margin-bottom: 30px;
+} */
+
+/* Styles for the search bar section in the application */
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Styles for the search bar input in the application */
+#searchInput {
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+  flex: 1;
+  padding: 8px;
+}
+
+/* Styles for the search button in the application */
+#searchButton {
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-left: none;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+  align-items: center;
+}
+
+/* Styles for the search button when it is being hoverd over */
+#searchButton:hover {
+  background-color: #0056b3;
+}
+
+/*Styles the Emojies here for the mood tracker*/
+.mood-tracker {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  justify-content: right;
+  margin-left: 150px;
+  margin-top: -36px;
+  flex-wrap: wrap;
+}
+
+.journal-section h4 {
+  color: rgb(0, 23, 128);
+  font-size: 18px;
+  margin: 0 5px 0 0;
+}
+
+.journal-section button.emoji {
+  font-size: 18px;
+  background-color: #f5f5f5;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  margin-right: 5px;
+  vertical-align: middle;
 }

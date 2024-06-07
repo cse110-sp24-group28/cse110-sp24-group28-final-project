@@ -14,13 +14,24 @@ export const getObject = (key) => {
     return undefined;
   }
 };
+/**
+ * @typedef {Object} journal
+ * @property {string} id
+ * @property {string} title
+ * @property {string} description
+ * @property {string} date
+ */
 
 // for every object we want to save, make sure we add it here with a corresponding key for the entry
 // make sure to actually set the object, rather than mutating it because proxy cannot detect object mutations
 export const storedObjects = new Proxy(
   {
+    /**
+     * @type {journal[]}
+     */
     journals: getObject("journals") ?? [],
     tasks: getObject("tasks") ?? [],
+    moods: getObject("moods") ?? [],
   },
   {
     set(target, p, newValue, receiver) {
