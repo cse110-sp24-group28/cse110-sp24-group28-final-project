@@ -19,9 +19,11 @@ If you want prettier to format on save, you also need to configure your IDE to r
 - For vscode, install the prettier extension: https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
 - For webstorm, go to preferences and enable format on save.
 
-In order to run the application, just run the command ```npm run dev``` rather than using live server (to keep things consistent between team members).
+In order to run the application, just run the command ```npm run dev``` rather than using vscode's live server extension (to keep things consistent between team members).
 
 If you want the latest documentation, run ```npm run document``` and it will generate in a folder called documentation.
+
+If you want an up to date coverage report, run ```npm run coverage``` and it will generate in a folder called coverage.
 
 ---
 
