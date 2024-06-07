@@ -11,7 +11,6 @@ describe("Basic user flow for Website", () => {
     await page.type("#journalDetails", "hello");
     await page.click("#saveJournal");
     // await page.goto("http://127.0.0.1:1234");
-    await page.waitForSelector("#searchInput");
     await page.type("#searchInput", "not-existent");
     await page.click("#searchButton");
     const journalList = await page.evaluate(() => {
@@ -197,7 +196,7 @@ describe("Basic user flow for Website", () => {
     expect(url).toBe("http://127.0.0.1:1234/index.html");
   });
 
-  test("Navigation to home screen after creating journal", async () => {
+  test("Navigation to home screen after creating a new journal", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
 
@@ -216,8 +215,11 @@ describe("Basic user flow for Website", () => {
   test("Navigation to home screen after choosing to exit from Task creation", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
+
     // Click the task button to go to the task creation page
     await page.click("#task");
+
+    await page.waitForSelector("#close");
 
     // Click the close button to exit task creation
     await page.click("#close");
@@ -226,4 +228,38 @@ describe("Basic user flow for Website", () => {
     const url = page.url();
     expect(url).toBe("http://127.0.0.1:1234/index.html");
   });
+
+  test("Navigation to home screen after creating a new task", async () => {
+    // Navigate to the journal creation page
+    await page.goto("http://127.0.0.1:1234/journal.html");
+
+    // Click the task button to go to the task creation page
+    await page.waitForSelector("#task");
+    await page.click("#task");
+
+    // Wait for the task creation page to load
+    await page.waitForSelector("#taskTitle");
+    await page.waitForSelector("#taskDetails");
+    await page.waitForSelector("#dueDate");
+    await page.waitForSelector("#addTask");
+
+    // Fill in the task form
+    await page.type("#taskTitle", "Test Task");
+    await page.type("#taskDetails", "Task entry for testing purposes.");
+
+    // Set the due date using the correct method
+    await page.evaluate(() => {
+      const dueDateInput = document.querySelector("#dueDate");
+      dueDateInput.value = "2024-06-10";
+      const event = new Event("input", { bubbles: true });
+      dueDateInput.dispatchEvent(event);
+    });
+
+    // Click the save button
+    await page.click("#addTask");
+
+    // Check if we are back on the home screen
+    const url = page.url();
+    expect(url).toBe("http://127.0.0.1:1234/index.html");
+  }); // 30 seconds timeout for this test
 });
