@@ -15,6 +15,8 @@ in order to run the application, just run the command ```npm run dev``` rather t
 use live server (to keep things consistent between team members)
 
 documentation: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/documentation
+coverage report: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/coverage/lcov-report/index.html
+website: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/
 
 for devs:
 if you want the latest documentation run ```npm run document``` and it will generate in a folder called documentation
