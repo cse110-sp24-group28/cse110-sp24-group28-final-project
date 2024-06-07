@@ -6,6 +6,8 @@ Application (GitHub Pages): https://cse110-sp24-group28.github.io/cse110-sp24-gr
 Documentation: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/documentation
 Coverage Report: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/coverage/lcov-report/index.html
 
+---
+
 ## Setup Instructions for Developers
 
 After cloning the repository, please install npm:
@@ -20,6 +22,8 @@ If you want prettier to format on save, you also need to configure your IDE to r
 In order to run the application, just run the command ```npm run dev``` rather than using live server (to keep things consistent between team members).
 
 If you want the latest documentation, run ```npm run document``` and it will generate in a folder called documentation.
+
+---
 
 ## File and Directory Information
 
