@@ -1,4 +1,4 @@
-# cse110-sp24-group28 FINAL PROJECT
+# cse110-sp24-group28 Final Project: Developer Journal
 
 ## Important Links
 
