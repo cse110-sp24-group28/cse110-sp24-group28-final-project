@@ -4,3 +4,4 @@ node_modules
 
 # ignore documentation because it is generated from code
 documentation
+coverage

@@ -38,6 +38,8 @@ jobs:
       - run: npm ci
       - run: npm run document
       - run: mv documentation src
+      - run: npm run coverage
+      - run: mv coverage src
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

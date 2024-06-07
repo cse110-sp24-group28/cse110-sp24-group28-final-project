@@ -12,7 +12,8 @@
     "prepare": "husky",
     "lint": "npx eslint 'src/**/*.js'",
     "dev": "node live-server.js",
-    "document": "jsdoc -r src -c jsdocConfig.json"
+    "document": "jsdoc -r src -c jsdocConfig.json",
+    "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js src/tests/unitTests --coverage"
   },
   "author": "",
   "license": "ISC",
