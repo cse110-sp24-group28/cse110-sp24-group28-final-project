@@ -1,16 +1,20 @@
 /* eslint-disable */
 describe("Basic user flow for Website", () => {
-  // First, visit the lab 8 website
+  /**
+   * First, visit the lab 8 website
+   */
   beforeAll(async () => {
     await page.goto("http://127.0.0.1:1234");
   });
 
+  /**
+   * Search for not-existent journal entry
+   */
   test("Search for not-existent journal entry", async () => {
     await page.goto("http://127.0.0.1:1234/journal.html");
     await page.type("#journalTitle", "Journal");
     await page.type("#journalDetails", "hello");
     await page.click("#saveJournal");
-    // await page.goto("http://127.0.0.1:1234");
     await page.type("#searchInput", "not-existent");
     await page.click("#searchButton");
     const journalList = await page.evaluate(() => {
@@ -19,6 +23,9 @@ describe("Basic user flow for Website", () => {
     expect(journalList).toContain("");
   });
 
+  /**
+   * Search for existent journal entry
+   */
   test("Search for existent journal entry", async () => {
     await page.click("#searchInput", { count: 3 });
     await page.type("#searchInput", "Journal");
@@ -154,6 +161,9 @@ describe("Basic user flow for Website", () => {
     expect(taskListAfter).toBe(taskListBefore);
   });
 
+  /**
+   * Click 'Create' button and navigate to journal.html
+   */
   test("Click 'Create' button and navigate to journal.html", async () => {
     await page.click("#create");
 
@@ -184,6 +194,9 @@ describe("Basic user flow for Website", () => {
     expect(opacity).toBe("1"); // Assuming that the selected emoji has an opacity of "1"
   });
 
+  /**
+   * Navigation to home screen after choosing to exit from journal creation
+   */
   test("Navigation to home screen after choosing to exit from journal creation", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
@@ -196,6 +209,9 @@ describe("Basic user flow for Website", () => {
     expect(url).toBe("http://127.0.0.1:1234/index.html");
   });
 
+  /**
+   * Navigation to home screen after creating a new journal
+   */
   test("Navigation to home screen after creating a new journal", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
@@ -212,6 +228,9 @@ describe("Basic user flow for Website", () => {
     expect(url).toBe("http://127.0.0.1:1234/index.html");
   });
 
+  /**
+   * Navigation to home screen after choosing to exit from Task creation
+   */
   test("Navigation to home screen after choosing to exit from Task creation", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
@@ -229,6 +248,9 @@ describe("Basic user flow for Website", () => {
     expect(url).toBe("http://127.0.0.1:1234/index.html");
   });
 
+  /**
+   * Navigation to home screen after creating a new task
+   */
   test("Navigation to home screen after creating a new task", async () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");

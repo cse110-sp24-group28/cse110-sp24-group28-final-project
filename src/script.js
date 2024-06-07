@@ -14,10 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   dateHeader.textContent = currentDate;
-  document.getElementById("previous").addEventListener("click", previous);
-  document.getElementById("next").addEventListener("click", next);
-  document.getElementById("month").addEventListener("change", jump);
-  document.getElementById("year").addEventListener("change", jump);
+  document.getElementById("previous").addEventListener("click", previous); // functonality for previous button
+  document.getElementById("next").addEventListener("click", next); // functionality for next button
+  document.getElementById("month").addEventListener("change", jump); // functionality for month dropdown
+  document.getElementById("year").addEventListener("change", jump); // functionality for year dropdown
+  //Collecting all necessay input fields
   journalTitleInput = document.getElementById("journalTitle");
   journalDescriptionInput = document.getElementById("journalDescription");
   journalDateInput = document.getElementById("journalDate");
@@ -27,20 +28,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Load and display journals
   displayjournals();
-
-  // // Load and display tasks
-  // displaytasks();
 });
 
 /**
  * Generates a unique id
+ * @return {string} A unique id.
  */
 export function generateUniqueId() {
   return "_" + Math.random().toString(36).substr(2, 9);
 }
 
 /**
- * Deletes journal
+ * Deletes a journal based on the provided journalId.
+ *
+ * @param {string} journalId - The id of the journal to be deleted.
+ * @return {void}
  */
 export function deletejournal(journalId) {
   storedObjects.journals = storedObjects.journals.filter((journal) => journal.id !== journalId);
@@ -48,7 +50,12 @@ export function deletejournal(journalId) {
   displayjournals();
 }
 
-// added deletetask, which is the same as deletejournal but for the tasks
+/**
+ * Deletes a task based on the provided ID.
+ *
+ * @param {string} taskId - The ID of the task to be deleted.
+ * @return {void}
+ */
 export function deletetask(taskId) {
   let tasks = getObject("tasks") || [];
   tasks = tasks.filter((task) => task.id !== taskId);
@@ -56,8 +63,13 @@ export function deletetask(taskId) {
   displaytasks();
 }
 
+/**
+ * Displays the journals on the current date with the corresponding moods and emojis.
+ * @return {void}
+ */
 export function displayjournals() {
   journalList.innerHTML = "";
+  // show today's journals
   let currentDate = new Date(dateHeader.textContent);
   let currentDay = currentDate.getDate();
   let currentMonth = currentDate.getMonth();
@@ -106,8 +118,15 @@ export function displayjournals() {
       let deleteButton = document.createElement("button");
       deleteButton.className = "delete-journal";
       deleteButton.textContent = "Delete";
+
+      /**
+       * When the delete button is clicked, it checks with the user
+       * if they want to delete the journal. If confirmed, it deletes
+       * else logs that the deletion was cancelled.
+       * @param {function} confirmed - A callback function that takes a boolean parameter indicating whether the user confirmed the deletion.
+       * @return {void}
+       */
       deleteButton.onclick = function () {
-        // deletejournal(journal.id);
         customConfirm("Are you sure you want to delete this journal?", function (confirmed) {
           if (confirmed) {
             deletejournal(journal.id);
@@ -123,6 +142,14 @@ export function displayjournals() {
   }
 }
 
+/**
+ * Displays a confirmation dialog box with the given message and executes a callback function
+ * when the user confirms or cancels the dialog.
+ *
+ * @param {string} msg - The message to display in the confirmation dialog.
+ * @param {function} callback - The callback function to execute when the user confirms or cancels the dialog.
+ * @return {void}
+ */
 function customConfirm(msg, callback) {
   const confirmBox = document.getElementById("confirmBox");
   confirmBox.style.display = "block";
@@ -137,8 +164,10 @@ function customConfirm(msg, callback) {
     confirmBox.style.display = "none";
   };
 }
-
-// added displaytasks, which is the same as displayjournals but for the tasks
+/**
+ * Displays the list of tasks on the page.
+ * @return {void}
+ */
 export function displaytasks() {
   //Emojis disappear when the task list is displayed
   // const moodtext = document.getElementById("mood-text");
@@ -161,8 +190,14 @@ export function displaytasks() {
     let deleteButton = document.createElement("button");
     deleteButton.className = "delete-task";
     deleteButton.textContent = "Delete";
+    /**
+     * When the delete button is clicked, it checks with the user
+     * if they want to delete the task. If confirmed, it deletes
+     * else logs that the deletion was cancelled.
+     * @param {function} confirmed - A callback function that takes a boolean parameter indicating whether the user confirmed the deletion.
+     * @return {void}
+     */
     deleteButton.onclick = function () {
-      // deletetask(task.id);
       customConfirm("Are you sure you want to delete this task?", function (confirmed) {
         if (confirmed) {
           deletetask(task.id);
@@ -176,6 +211,13 @@ export function displaytasks() {
   }
 }
 
+/**
+ * Generates a range of years.
+ *
+ * @param {number} start - The starting year of the range (inclusive).
+ * @param {number} end - The ending year of the range (inclusive).
+ * @return {string} A string of HTML options, each representing a year in the range.
+ */
 export function generate_year_range(start, end) {
   let years = "";
   for (let year = start; year <= end; year++) {
@@ -184,6 +226,7 @@ export function generate_year_range(start, end) {
   return years;
 }
 
+// Collecting all the necessary input fields
 let today = new Date();
 let currentMonth = today.getMonth();
 let currentYear = today.getFullYear();
@@ -206,26 +249,44 @@ if (document.getElementById("thead-month")) document.getElementById("thead-month
 
 let monthAndYear = document.getElementById("monthAndYear");
 
-// to the next month
+/**
+ * Moved the calendar to the next month and updates the calendar.
+ * @return {void}
+ */
 function next() {
   currentYear = currentMonth === 11 ? currentYear + 1 : currentYear;
   currentMonth = (currentMonth + 1) % 12;
   showCalendar(currentMonth, currentYear);
 }
 
-// to previous month
+/**
+ * Moved the calendar to the previous month and updates the calendar.
+ * @return {void}
+ */
 function previous() {
   currentYear = currentMonth === 0 ? currentYear - 1 : currentYear;
   currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
   showCalendar(currentMonth, currentYear);
 }
-
+/**
+ * Changes the current year and month based on the selected values,
+ * and displays the calendar for the selected month and year.
+ * @return {void}
+ *
+ */
 function jump() {
   currentYear = parseInt(selectYear.value);
   currentMonth = parseInt(selectMonth.value);
   showCalendar(currentMonth, currentYear);
 }
 
+/**
+ * Displays a calendar for the specified month and year.
+ * @return {void}
+ *
+ * @param {number} month - The month to display.
+ * @param {number} year - The year to display.
+ */
 function showCalendar(month, year) {
   let firstDay = new Date(year, month, 1).getDay();
   let tbl = document.getElementById("calendar-body");
@@ -326,6 +387,8 @@ function showCalendar(month, year) {
   });
   //when components bar button is clicked, journals are filtered based on components input
   document.getElementById("searchBarForm").addEventListener("submit", handleSearchSubmit);
+  //when components bar button is clicked, journals are filtered based on components input
+  document.getElementById("searchBarForm").addEventListener("submit", handleSearchSubmit);
 }
 
 function createjournalTooltip(date, month, year) {
@@ -347,7 +410,12 @@ function createjournalTooltip(date, month, year) {
 }
 
 /**
- * Get journal On Date
+ * Returns an array of journals that were created on the specified date.
+ *
+ * @param {number} date - The day of the month.
+ * @param {number} month - The month.
+ * @param {number} year - The year.
+ * @return {Array} An array of journals that were created on the specified date.
  */
 export function getjournalsOnDate(date, month, year) {
   return storedObjects.journals.filter(function (journal) {
@@ -355,23 +423,26 @@ export function getjournalsOnDate(date, month, year) {
     return journalDate.getDate() === date && journalDate.getMonth() === month && journalDate.getFullYear() === year;
   });
 }
-
 /**
- * Check has journal On Date
+ * Checks if there are any journals created on the specified date.
+ *
+ * @param {number} date - The day of the month.
+ * @param {number} month - The month.
+ * @param {number} year - The year.
+ * @return {boolean} True if there are journals created on the specified date, false otherwise.
  */
 export function hasjournalOnDate(date, month, year) {
   return getjournalsOnDate(date, month, year).length > 0;
 }
 
-/**
- * Show Searched Journals
- */
 export function daysInMonth(iMonth, iYear) {
   return 32 - new Date(iYear, iMonth, 32).getDate();
 }
 
 /**
  * Show Searched Journals
+ * @param {Array} searchedJournals - An array of journal objects containing a title, description, and date.
+ * @return {void}
  */
 export function showSearchedJournals(searchedJournals) {
   journalList.innerHTML = "";
@@ -386,6 +457,12 @@ export function showSearchedJournals(searchedJournals) {
     let deleteButton = document.createElement("button");
     deleteButton.className = "delete-journal";
     deleteButton.textContent = "Delete";
+    /**
+     * When the delete button is clicked, it checks with the user
+     * if they want to delete the task. If confirmed, it deletes
+     * else logs that the deletion was cancelled.
+     * @return {void}
+     */
     deleteButton.onclick = function () {
       customConfirm("Are you sure you want to delete this journal?", function (confirmed) {
         if (confirmed) {
@@ -411,6 +488,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+/**
+ * Tracks the mood of the user and highlights the clicked button.
+ *
+ * @param {HTMLElement} todayMood - The button element representing the user's mood.
+ * @return {void}
+ */
 function moodTracker(todayMood) {
   let moodButtons = document.querySelectorAll(".emoji");
   //highlight the clicked button
