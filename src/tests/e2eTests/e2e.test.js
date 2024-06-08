@@ -15,6 +15,7 @@ describe("Basic user flow for Website", () => {
     await page.type("#journalTitle", "Journal");
     await page.type("#journalDetails", "hello");
     await page.click("#saveJournal");
+    await page.waitForSelector("#indexBody");
     await page.type("#searchInput", "not-existent");
     await page.click("#searchButton");
     const journalList = await page.evaluate(() => {
@@ -279,6 +280,7 @@ describe("Basic user flow for Website", () => {
 
     // Click the save button
     await page.click("#addTask");
+    await page.waitForSelector("#indexBody");
 
     // Check if we are back on the home screen
     const url = page.url();
