@@ -2,8 +2,8 @@
 
 ## Important Links
 
-Application (GitHub Pages): https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/
-Documentation: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/documentation
+Application (GitHub Pages): https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/  
+JSDoc: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/documentation  
 Coverage Report: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/coverage/lcov-report/index.html
 
 ---
@@ -44,3 +44,9 @@ If you want an up to date coverage report, run ```npm run coverage``` and it wil
 `src/tests/`: Contains end-to-end and unit tests for the application.
 - `src/e2eTests/` contains end-to-end tests.
 - `src/unitTests/` contains unit tests.
+
+---
+
+## Demo
+
+![](GIFdemo.gif)
