@@ -166,7 +166,8 @@ describe("Basic user flow for Website", () => {
    * Click 'Create' button and navigate to journal.html
    */
   test("Click 'Create' button and navigate to journal.html", async () => {
-    await page.click("#create");
+    await page.hover(".dropdownButton");
+    await page.click(".dropdownContent a");
 
     const url = page.url();
     expect(url).toContain("journal.html");
@@ -202,8 +203,8 @@ describe("Basic user flow for Website", () => {
     // Navigate to the journal creation page
     await page.goto("http://127.0.0.1:1234/journal.html");
 
-    // Click the save button
-    await page.click("#close");
+    // Click the home button
+    await page.click(".headerContainer a");
 
     // Check if we are back on the home screen
     const url = page.url();
@@ -233,16 +234,13 @@ describe("Basic user flow for Website", () => {
    * Navigation to home screen after choosing to exit from Task creation
    */
   test("Navigation to home screen after choosing to exit from Task creation", async () => {
-    // Navigate to the journal creation page
-    await page.goto("http://127.0.0.1:1234/journal.html");
+    // Navigate to the task page
+    await page.goto("http://127.0.0.1:1234/task.html");
 
-    // Click the task button to go to the task creation page
-    await page.click("#task");
-
-    await page.waitForSelector("#close");
+    await page.waitForSelector(".headerContainer a");
 
     // Click the close button to exit task creation
-    await page.click("#close");
+    await page.click(".headerContainer a");
 
     // Check if we are back on the home screen
     const url = page.url();

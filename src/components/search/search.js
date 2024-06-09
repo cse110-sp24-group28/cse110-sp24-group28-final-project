@@ -1,5 +1,5 @@
-import { storedObjects } from "../localStorageHelper.js";
-import { dateHeader, showSearchedJournals } from "../script.js";
+import { storedObjects } from "../../localStorageHelper.js";
+import { dateHeader, showSearchedJournals } from "../../script.js";
 
 /**
  * Handles the case when the user presses the search button or the form is submitted

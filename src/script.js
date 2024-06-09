@@ -1,5 +1,5 @@
 import { saveObject, getObject, storedObjects } from "./localStorageHelper.js";
-import { handleSearchSubmit } from "./components/search.js";
+import { handleSearchSubmit } from "./components/search/search.js";
 
 let journalTitleInput, journalDescriptionInput, journalDateInput, journalList;
 export let dateHeader;
