@@ -3,7 +3,7 @@
 ## Important Links
 
 Application (GitHub Pages): https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/
-Documentation: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/documentation
+JSDoc: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/documentation  
 Coverage Report: https://cse110-sp24-group28.github.io/cse110-sp24-group28-final-project/coverage/lcov-report/index.html
 
 ---
