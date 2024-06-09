@@ -5,13 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="components/header/header.css" />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
     <title>Developer Journal</title>
   </head>
   <body id="indexBody">
+    <div class="headerContainer">
+      <a href="/">
+        <img src="assets/fullLogo.png" height="50" width="100" alt="logo" />
+      </a>
+      <a href="/">Home</a>
+      <div class="dropdown">
+        <button class="dropdownButton">
+          Create
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdownContent">
+          <a href="journal.html">Journal</a>
+          <a href="task.html">Task</a>
+        </div>
+      </div>
+    </div>
     <div class="wrapper">
       <div class="container-calendar">
         <div id="right">
-          <button id="create" onclick="window.location.href = 'journal.html'">Create</button>
           <button id="view-journals">View Journals</button>
           <button id="view-tasks">View Tasks</button>
           <h1></h1>

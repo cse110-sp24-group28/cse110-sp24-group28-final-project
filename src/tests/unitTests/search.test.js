@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import { generateJournals } from "./utils.js";
-import { search } from "../../components/search.js";
+import { search } from "../../components/search/search.js";
 
 /**
  * Test search journal functionality
